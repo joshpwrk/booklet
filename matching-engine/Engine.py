@@ -1,9 +1,9 @@
 import json
 import uuid
 import redis
-import LimitOrder from LimitOrder
+from .LimitOrder import LimitOrder
+from .Instrument import Instrument
 from .redis_utils import launch_redis_client
-from RedisOrderedSet import RedisOrderedSet
 from datetime import datetime
 
 # The engine uses a dual DB model in redis:
@@ -21,7 +21,7 @@ class Engine:
     # POST #
     ########
 
-    def post_limit_order(limit_order: str):
+    def post_limit_order(self, limit_order: str):
         order = LimitOrder(limit_order)
 
         # Get the best counterparties for the order
@@ -38,12 +38,12 @@ class Engine:
         # Execute the order against the best counterparties
         if counter_orders:
             counter_orders = list(map(lambda x: LimitOrder(x), self.r.mget(counter_orders))) 
-            (filled_orders, partial_fill) = self._pairoff(order, counter_orders)
+            (filled_orders, partial_fill) = self.pairoff(order, counter_orders)
 
             # delete filled orders from redis
             [order.delete_from_redis(pipe) for order in filled_orders]
             # update partial filled order
-            partial_fill.post_to_redis(pipe)
+            partial_fill.post_to_redis(pipe) if partial_fill else None
 
         # Save whatever is left to redis
         if order.amount > 0:
@@ -57,7 +57,8 @@ class Engine:
     ##################
         
     # Change to BaseOrder so that can be reused in pairing off market orders
-    def _pairoff(order: LimitOrder, counter_orders: List[LimitOrder]) -> (List[str], LimitOrder):
+    @staticmethod
+    def pairoff(order: LimitOrder, counter_orders: list[LimitOrder]):
         filled_orders = []
     
         # Loop through counter orders and execute against input order
