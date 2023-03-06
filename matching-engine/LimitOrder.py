@@ -25,18 +25,19 @@ class LimitOrder:
 
         self.instrument_id = 'ETH-$1300-CALL-01012024'
 
-    def delete_from_redis(self, pipe: Redis.Pipeline):
-        (price_zset_key, expiry_zset_key) = _redis_orderedsets(order.instrument_id, order.is_bid)
+        # setup the zset keys
+        instrument = Instrument(self.r, self.instrument_id)
+        self.price_zset_key = instrument.redis_price_set(self.is_bid)
+        self.expiry_zset_key = instrument.redis_expiry_set(self.is_bid)
 
+    def delete_from_redis(self, pipe: Redis.Pipeline):
         pipe.zrem(price_zset_key, order.order_id)
         pipe.zrem(expiry_zset_key, order.order_id)
         pipe.delete(order.order_id)
  
     def post_to_redis(self, pipe: Redis.Pipeline):
-        (price_zset_key, expiry_zset_key) = _redis_orderedsets(order.instrument_id, order.is_bid)
-
-        pipe.zadd(price_zset_key, {order.order_id: order.limit_price}, CH=True, NX=True)
-        pipe.zadd(expiry_zset_key, {order.order_id: order.order_expiry}, CH=True, NX=True)
+        pipe.zadd(self.price_zset_key, {order.order_id: order.limit_price}, CH=True, NX=True)
+        pipe.zadd(self.expiry_zset_key, {order.order_id: order.order_expiry}, CH=True, NX=True)
         pipe.set(order.order_id, json.dumps(self.json))
 
         # automatically clears expired orders in main set

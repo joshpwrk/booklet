@@ -26,8 +26,12 @@ class Engine:
 
 
         # Get the best counterparties for the order
-        counter_orders = self.get_orders_within_limit_price(
-            order.instrument_id, not order.is_bid, order.limit_price)[:self.max_counterparties]
+        instrument = Instrument(self.r, order.instrument_id)
+        counter_orders = instrument.get_orders_within_limit_price(
+            order.is_bid, 
+            order.limit_price, 
+            self.max_counterparties
+        )
 
         # Begin pipe to batch all redis writes into atomic transaction
         pipe = self.r.pipeline()
@@ -48,38 +52,6 @@ class Engine:
         
         # Execute atomically in one transaction
         pipe.execute()
-        
-    #######
-    # GET #
-    #######
-
-    # TODO: eventually would be nice to sort by entry time
-    def get_orders_within_limit_price(instrument_id: str, is_bid: bool, limit_price: float) -> LimitOrder:
-        # use redis z sets to get all orders within range
-        order_ids = self.r.zrangebyscore(
-            _redis_subset_name(instrument_id, is_bid, RedisOrderedSet.PRICE), 
-            min="-inf", max=limit_price, 
-            start=0, self.max_counterparties
-        )
-
-        # prune out the ones that expired in one redis operation
-        # (note this doesn't clear the orderedsets)
-        pipe = self.r.pipeline()
-        for id in order_ids:
-            pipe.exists(id)
-        results = exists_pipeline.execute()
-        return [order_ids[i] for i, result in enumerate(results) if result == 1]
-
-    def get_expired_orders(instrument_id: str, is_bid: bool):
-        (, expiry_zset_key) = _redis_orderedsets(order.instrument_id, order.is_bid)
-
-        expired_order_ids = self.r.zrangebyscore(
-            expiry_zset_key, 
-            min_score=-inf, 
-            max_score=int(datetime.datetime.now().timestamp())
-        )
-
-        return order_ids 
           
     ##################
     # BUSINESS LOGIC #
@@ -108,12 +80,6 @@ class Engine:
 
         # Return orders to delete and order to modify
         return filled_orders, partial_fill
-
-    def _redis_orderedsets(instrument_id: str, is_bid: bool):
-        return (
-            instrument_id + ('-BID' if order.is_bid else '-ASK') + "-" + RedisOrderedSet.PRICE,
-            instrument_id + ('-BID' if order.is_bid else '-ASK') + "-" + RedisOrderedSet.EXPIRY
-        )
 
 
 
