@@ -24,7 +24,6 @@ class Engine:
     def post_limit_order(limit_order: str):
         order = LimitOrder(limit_order)
 
-
         # Get the best counterparties for the order
         instrument = Instrument(self.r, order.instrument_id)
         counter_orders = instrument.get_orders_within_limit_price(
