@@ -31,6 +31,7 @@ class Engine:
             order.limit_price, 
             self.max_counterparties
         )
+        print(counter_orders)
 
         # Begin pipe to batch all redis writes into atomic transaction
         pipe = self.r.pipeline()
@@ -47,6 +48,8 @@ class Engine:
 
         # Save whatever is left to redis
         if order.amount > 0:
+            print("ORDER TO POST")
+            print(order.amount)
             order.post_to_redis(pipe)
         
         # Execute atomically in one transaction
@@ -65,6 +68,7 @@ class Engine:
         for counter_order in counter_orders:
             # Execute as much of the order as possible
             amount = min(order.amount, counter_order.amount)
+            print(amount)
             order.amount -= amount
             counter_order.amount -= amount
             

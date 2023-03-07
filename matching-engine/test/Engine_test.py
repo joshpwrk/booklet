@@ -28,9 +28,8 @@ class EngineTest(unittest.TestCase):
         order2_json = {"user": "testuser2", "order_id": "random2", "is_bid": True, "limit_price": 100, "amount": 10, "order_expiry": 1679155437}
 
         # Add the orders to the Redis set
-        print("POSTING 1...")
+        print("POSTING...")
         self.engine.post_limit_order(json.dumps(order1_json))
-        print("POSTING 2...")
         self.engine.post_limit_order(json.dumps(order2_json))
 
         # Check that the orders were added correctly
@@ -41,6 +40,9 @@ class EngineTest(unittest.TestCase):
         for key in self.engine.r.scan_iter("*"):
             # value = self.engine.r.get(key)
             print(key.decode())
+
+        print(order1_json)
+        print(json.loads(order1_from_redis))
 
         self.assertEqual(order1_json, json.loads(order1_from_redis))
         self.assertEqual(order2_json, json.loads(order2_from_redis))
@@ -68,32 +70,27 @@ class EngineTest(unittest.TestCase):
         self.engine.post_limit_order(json.dumps(existing_order1_json))
         self.engine.post_limit_order(json.dumps(existing_order2_json))
 
-        for key in self.engine.r.scan_iter("*"):
-            # value = self.engine.r.get(key)
-            print(key.decode())
-
         order1_redis = self.engine.r.get(existing_order1_json["order_id"])
         order2_redis = self.engine.r.get(existing_order2_json["order_id"])
-
-        print(order2_redis)
-        print(json.dumps(existing_order2_json))
 
         self.assertEqual(existing_order1_json, json.loads(order1_redis))
         self.assertEqual(existing_order2_json, json.loads(order2_redis))
 
         # post limit order that can cross
         order_json = {
-            "user": "testuser1", 
+            "user": "testuser3", 
             "order_id": "random1", 
             "is_bid": True, 
             "limit_price": 100, 
             "amount": 10, 
             "order_expiry": 1679155437
         }
-        
-    
-        # filled_orders, partial_fill = Engine.pairoff(order, counter_orders)
-        
+        self.engine.post_limit_order(json.dumps(order_json))
+        order_redis = json.loads(self.engine.r.get(order_json["order_id"]))
+                
+        print("PARTIALLY CROSSED ORDER")
+        print(order_redis)
+            
         # self.assertEqual(len(filled_orders), 1)
         # self.assertEqual(filled_orders[0].order_id, "random3")
         # self.assertEqual(partial_fill, None)
