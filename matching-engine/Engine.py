@@ -24,9 +24,11 @@ class Engine:
     def post_limit_order(self, limit_order: str):
         order = LimitOrder(limit_order)
 
+        print("IS BID")
+        print(order.is_bid)
         # Get the best counterparties for the order
         instrument = Instrument(self.r, order.instrument_id)
-        counter_orders = instrument.get_orders_within_limit_price(
+        counter_orders = instrument.get_crossable_orders(
             not order.is_bid, 
             order.limit_price, 
             self.max_counterparties
@@ -41,6 +43,7 @@ class Engine:
             counter_orders = list(map(lambda x: LimitOrder(x), self.r.mget(counter_orders))) 
             (filled_orders, partial_fill) = self.pairoff(order, counter_orders)
 
+            print(filled_orders[0].order_id)
             # delete filled orders from redis
             [order.delete_from_redis(pipe) for order in filled_orders]
             # update partial filled order

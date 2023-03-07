@@ -312,3 +312,256 @@
 36181:signal-handler (1678163992) Received SIGTERM scheduling shutdown...
 36181:M 07 Mar 2023 13:39:52.917 # User requested shutdown...
 36181:M 07 Mar 2023 13:39:52.917 # Redis is now ready to exit, bye bye...
+36297:C 07 Mar 2023 13:40:45.550 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36297:C 07 Mar 2023 13:40:45.550 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36297, just started
+36297:C 07 Mar 2023 13:40:45.550 # Configuration loaded
+36297:M 07 Mar 2023 13:40:45.551 * monotonic clock: POSIX clock_gettime
+36297:M 07 Mar 2023 13:40:45.552 * Running mode=standalone, port=6379.
+36297:M 07 Mar 2023 13:40:45.552 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36297:M 07 Mar 2023 13:40:45.552 # Server initialized
+36297:M 07 Mar 2023 13:40:45.552 * Ready to accept connections
+36297:signal-handler (1678164045) Received SIGTERM scheduling shutdown...
+36297:M 07 Mar 2023 13:40:45.754 # User requested shutdown...
+36297:M 07 Mar 2023 13:40:45.755 # Redis is now ready to exit, bye bye...
+36298:C 07 Mar 2023 13:40:45.769 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36298:C 07 Mar 2023 13:40:45.769 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36298, just started
+36298:C 07 Mar 2023 13:40:45.769 # Configuration loaded
+36298:M 07 Mar 2023 13:40:45.770 * monotonic clock: POSIX clock_gettime
+36298:M 07 Mar 2023 13:40:45.771 * Running mode=standalone, port=6379.
+36298:M 07 Mar 2023 13:40:45.771 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36298:M 07 Mar 2023 13:40:45.771 # Server initialized
+36298:M 07 Mar 2023 13:40:45.771 * Ready to accept connections
+36298:signal-handler (1678164045) Received SIGTERM scheduling shutdown...
+36298:M 07 Mar 2023 13:40:45.873 # User requested shutdown...
+36298:M 07 Mar 2023 13:40:45.873 # Redis is now ready to exit, bye bye...
+36370:C 07 Mar 2023 13:41:29.191 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36370:C 07 Mar 2023 13:41:29.191 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36370, just started
+36370:C 07 Mar 2023 13:41:29.192 # Configuration loaded
+36370:M 07 Mar 2023 13:41:29.192 * monotonic clock: POSIX clock_gettime
+36370:M 07 Mar 2023 13:41:29.193 * Running mode=standalone, port=6379.
+36370:M 07 Mar 2023 13:41:29.193 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36370:M 07 Mar 2023 13:41:29.193 # Server initialized
+36370:M 07 Mar 2023 13:41:29.194 * Ready to accept connections
+36370:signal-handler (1678164089) Received SIGTERM scheduling shutdown...
+36370:M 07 Mar 2023 13:41:29.395 # User requested shutdown...
+36370:M 07 Mar 2023 13:41:29.395 # Redis is now ready to exit, bye bye...
+36371:C 07 Mar 2023 13:41:29.406 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36371:C 07 Mar 2023 13:41:29.406 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36371, just started
+36371:C 07 Mar 2023 13:41:29.406 # Configuration loaded
+36371:M 07 Mar 2023 13:41:29.407 * monotonic clock: POSIX clock_gettime
+36371:M 07 Mar 2023 13:41:29.408 * Running mode=standalone, port=6379.
+36371:M 07 Mar 2023 13:41:29.408 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36371:M 07 Mar 2023 13:41:29.408 # Server initialized
+36371:M 07 Mar 2023 13:41:29.408 * Ready to accept connections
+36371:signal-handler (1678164089) Received SIGTERM scheduling shutdown...
+36371:M 07 Mar 2023 13:41:29.509 # User requested shutdown...
+36371:M 07 Mar 2023 13:41:29.509 # Redis is now ready to exit, bye bye...
+36401:C 07 Mar 2023 13:41:41.527 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36401:C 07 Mar 2023 13:41:41.528 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36401, just started
+36401:C 07 Mar 2023 13:41:41.528 # Configuration loaded
+36401:M 07 Mar 2023 13:41:41.529 * monotonic clock: POSIX clock_gettime
+36401:M 07 Mar 2023 13:41:41.530 * Running mode=standalone, port=6379.
+36401:M 07 Mar 2023 13:41:41.530 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36401:M 07 Mar 2023 13:41:41.530 # Server initialized
+36401:M 07 Mar 2023 13:41:41.530 * Ready to accept connections
+36401:signal-handler (1678164101) Received SIGTERM scheduling shutdown...
+36401:M 07 Mar 2023 13:41:41.731 # User requested shutdown...
+36401:M 07 Mar 2023 13:41:41.732 # Redis is now ready to exit, bye bye...
+36402:C 07 Mar 2023 13:41:41.741 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36402:C 07 Mar 2023 13:41:41.741 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36402, just started
+36402:C 07 Mar 2023 13:41:41.741 # Configuration loaded
+36402:M 07 Mar 2023 13:41:41.742 * monotonic clock: POSIX clock_gettime
+36402:M 07 Mar 2023 13:41:41.743 * Running mode=standalone, port=6379.
+36402:M 07 Mar 2023 13:41:41.743 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36402:M 07 Mar 2023 13:41:41.743 # Server initialized
+36402:M 07 Mar 2023 13:41:41.743 * Ready to accept connections
+36402:signal-handler (1678164101) Received SIGTERM scheduling shutdown...
+36402:M 07 Mar 2023 13:41:41.843 # User requested shutdown...
+36402:M 07 Mar 2023 13:41:41.843 # Redis is now ready to exit, bye bye...
+36476:C 07 Mar 2023 13:43:24.070 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36476:C 07 Mar 2023 13:43:24.070 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36476, just started
+36476:C 07 Mar 2023 13:43:24.071 # Configuration loaded
+36476:M 07 Mar 2023 13:43:24.071 * monotonic clock: POSIX clock_gettime
+36476:M 07 Mar 2023 13:43:24.073 * Running mode=standalone, port=6379.
+36476:M 07 Mar 2023 13:43:24.073 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36476:M 07 Mar 2023 13:43:24.073 # Server initialized
+36476:M 07 Mar 2023 13:43:24.073 * Ready to accept connections
+36476:signal-handler (1678164204) Received SIGTERM scheduling shutdown...
+36476:M 07 Mar 2023 13:43:24.275 # User requested shutdown...
+36476:M 07 Mar 2023 13:43:24.275 # Redis is now ready to exit, bye bye...
+36477:C 07 Mar 2023 13:43:24.290 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36477:C 07 Mar 2023 13:43:24.290 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36477, just started
+36477:C 07 Mar 2023 13:43:24.290 # Configuration loaded
+36477:M 07 Mar 2023 13:43:24.292 * monotonic clock: POSIX clock_gettime
+36477:M 07 Mar 2023 13:43:24.293 * Running mode=standalone, port=6379.
+36477:M 07 Mar 2023 13:43:24.293 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36477:M 07 Mar 2023 13:43:24.293 # Server initialized
+36477:M 07 Mar 2023 13:43:24.293 * Ready to accept connections
+36477:signal-handler (1678164204) Received SIGTERM scheduling shutdown...
+36477:M 07 Mar 2023 13:43:24.394 # User requested shutdown...
+36477:M 07 Mar 2023 13:43:24.394 # Redis is now ready to exit, bye bye...
+36509:C 07 Mar 2023 13:43:40.165 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36509:C 07 Mar 2023 13:43:40.165 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36509, just started
+36509:C 07 Mar 2023 13:43:40.165 # Configuration loaded
+36509:M 07 Mar 2023 13:43:40.166 * monotonic clock: POSIX clock_gettime
+36509:M 07 Mar 2023 13:43:40.167 * Running mode=standalone, port=6379.
+36509:M 07 Mar 2023 13:43:40.167 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36509:M 07 Mar 2023 13:43:40.167 # Server initialized
+36509:M 07 Mar 2023 13:43:40.167 * Ready to accept connections
+36509:signal-handler (1678164220) Received SIGTERM scheduling shutdown...
+36509:M 07 Mar 2023 13:43:40.369 # User requested shutdown...
+36509:M 07 Mar 2023 13:43:40.369 # Redis is now ready to exit, bye bye...
+36510:C 07 Mar 2023 13:43:40.383 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36510:C 07 Mar 2023 13:43:40.383 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36510, just started
+36510:C 07 Mar 2023 13:43:40.383 # Configuration loaded
+36510:M 07 Mar 2023 13:43:40.384 * monotonic clock: POSIX clock_gettime
+36510:M 07 Mar 2023 13:43:40.385 * Running mode=standalone, port=6379.
+36510:M 07 Mar 2023 13:43:40.385 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36510:M 07 Mar 2023 13:43:40.385 # Server initialized
+36510:M 07 Mar 2023 13:43:40.386 * Ready to accept connections
+36510:signal-handler (1678164220) Received SIGTERM scheduling shutdown...
+36510:M 07 Mar 2023 13:43:40.487 # User requested shutdown...
+36510:M 07 Mar 2023 13:43:40.487 # Redis is now ready to exit, bye bye...
+36571:C 07 Mar 2023 13:44:39.026 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36571:C 07 Mar 2023 13:44:39.026 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36571, just started
+36571:C 07 Mar 2023 13:44:39.026 # Configuration loaded
+36571:M 07 Mar 2023 13:44:39.027 * monotonic clock: POSIX clock_gettime
+36571:M 07 Mar 2023 13:44:39.028 * Running mode=standalone, port=6379.
+36571:M 07 Mar 2023 13:44:39.028 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36571:M 07 Mar 2023 13:44:39.028 # Server initialized
+36571:M 07 Mar 2023 13:44:39.028 * Ready to accept connections
+36571:signal-handler (1678164279) Received SIGTERM scheduling shutdown...
+36571:M 07 Mar 2023 13:44:39.229 # User requested shutdown...
+36571:M 07 Mar 2023 13:44:39.230 # Redis is now ready to exit, bye bye...
+36572:C 07 Mar 2023 13:44:39.243 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36572:C 07 Mar 2023 13:44:39.243 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36572, just started
+36572:C 07 Mar 2023 13:44:39.243 # Configuration loaded
+36572:M 07 Mar 2023 13:44:39.244 * monotonic clock: POSIX clock_gettime
+36572:M 07 Mar 2023 13:44:39.245 * Running mode=standalone, port=6379.
+36572:M 07 Mar 2023 13:44:39.245 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36572:M 07 Mar 2023 13:44:39.245 # Server initialized
+36572:M 07 Mar 2023 13:44:39.245 * Ready to accept connections
+36572:signal-handler (1678164279) Received SIGTERM scheduling shutdown...
+36572:M 07 Mar 2023 13:44:39.346 # User requested shutdown...
+36572:M 07 Mar 2023 13:44:39.346 # Redis is now ready to exit, bye bye...
+36605:C 07 Mar 2023 13:45:08.825 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36605:C 07 Mar 2023 13:45:08.825 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36605, just started
+36605:C 07 Mar 2023 13:45:08.825 # Configuration loaded
+36605:M 07 Mar 2023 13:45:08.826 * monotonic clock: POSIX clock_gettime
+36605:M 07 Mar 2023 13:45:08.828 * Running mode=standalone, port=6379.
+36605:M 07 Mar 2023 13:45:08.828 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36605:M 07 Mar 2023 13:45:08.828 # Server initialized
+36605:M 07 Mar 2023 13:45:08.828 * Ready to accept connections
+36605:signal-handler (1678164308) Received SIGTERM scheduling shutdown...
+36605:M 07 Mar 2023 13:45:09.030 # User requested shutdown...
+36605:M 07 Mar 2023 13:45:09.030 # Redis is now ready to exit, bye bye...
+36606:C 07 Mar 2023 13:45:09.042 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36606:C 07 Mar 2023 13:45:09.042 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36606, just started
+36606:C 07 Mar 2023 13:45:09.042 # Configuration loaded
+36606:M 07 Mar 2023 13:45:09.043 * monotonic clock: POSIX clock_gettime
+36606:M 07 Mar 2023 13:45:09.044 * Running mode=standalone, port=6379.
+36606:M 07 Mar 2023 13:45:09.045 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36606:M 07 Mar 2023 13:45:09.045 # Server initialized
+36606:M 07 Mar 2023 13:45:09.045 * Ready to accept connections
+36606:signal-handler (1678164309) Received SIGTERM scheduling shutdown...
+36606:M 07 Mar 2023 13:45:09.146 # User requested shutdown...
+36606:M 07 Mar 2023 13:45:09.146 # Redis is now ready to exit, bye bye...
+36629:C 07 Mar 2023 13:45:28.080 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36629:C 07 Mar 2023 13:45:28.089 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36629, just started
+36629:C 07 Mar 2023 13:45:28.092 # Configuration loaded
+36629:M 07 Mar 2023 13:45:28.095 * monotonic clock: POSIX clock_gettime
+36629:M 07 Mar 2023 13:45:28.096 * Running mode=standalone, port=6379.
+36629:M 07 Mar 2023 13:45:28.097 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36629:M 07 Mar 2023 13:45:28.129 # Server initialized
+36629:M 07 Mar 2023 13:45:28.129 * Ready to accept connections
+36629:signal-handler (1678164328) Received SIGTERM scheduling shutdown...
+36629:M 07 Mar 2023 13:45:28.229 # User requested shutdown...
+36629:M 07 Mar 2023 13:45:28.229 # Redis is now ready to exit, bye bye...
+36666:C 07 Mar 2023 13:46:18.902 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36666:C 07 Mar 2023 13:46:18.902 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36666, just started
+36666:C 07 Mar 2023 13:46:18.902 # Configuration loaded
+36666:M 07 Mar 2023 13:46:18.903 * monotonic clock: POSIX clock_gettime
+36666:M 07 Mar 2023 13:46:18.904 * Running mode=standalone, port=6379.
+36666:M 07 Mar 2023 13:46:18.905 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36666:M 07 Mar 2023 13:46:18.905 # Server initialized
+36666:M 07 Mar 2023 13:46:18.905 * Ready to accept connections
+36666:signal-handler (1678164379) Received SIGTERM scheduling shutdown...
+36666:M 07 Mar 2023 13:46:19.105 # User requested shutdown...
+36666:M 07 Mar 2023 13:46:19.105 # Redis is now ready to exit, bye bye...
+36688:C 07 Mar 2023 13:46:27.235 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36688:C 07 Mar 2023 13:46:27.235 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36688, just started
+36688:C 07 Mar 2023 13:46:27.235 # Configuration loaded
+36688:M 07 Mar 2023 13:46:27.236 * monotonic clock: POSIX clock_gettime
+36688:M 07 Mar 2023 13:46:27.237 * Running mode=standalone, port=6379.
+36688:M 07 Mar 2023 13:46:27.237 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36688:M 07 Mar 2023 13:46:27.237 # Server initialized
+36688:M 07 Mar 2023 13:46:27.238 * Ready to accept connections
+36688:signal-handler (1678164387) Received SIGTERM scheduling shutdown...
+36688:M 07 Mar 2023 13:46:27.439 # User requested shutdown...
+36688:M 07 Mar 2023 13:46:27.440 # Redis is now ready to exit, bye bye...
+36723:C 07 Mar 2023 13:46:42.498 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36723:C 07 Mar 2023 13:46:42.498 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36723, just started
+36723:C 07 Mar 2023 13:46:42.498 # Configuration loaded
+36723:M 07 Mar 2023 13:46:42.499 * monotonic clock: POSIX clock_gettime
+36723:M 07 Mar 2023 13:46:42.500 * Running mode=standalone, port=6379.
+36723:M 07 Mar 2023 13:46:42.501 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36723:M 07 Mar 2023 13:46:42.501 # Server initialized
+36723:M 07 Mar 2023 13:46:42.501 * Ready to accept connections
+36723:signal-handler (1678164402) Received SIGTERM scheduling shutdown...
+36723:M 07 Mar 2023 13:46:42.702 # User requested shutdown...
+36723:M 07 Mar 2023 13:46:42.703 # Redis is now ready to exit, bye bye...
+36947:C 07 Mar 2023 14:00:34.890 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36947:C 07 Mar 2023 14:00:34.890 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36947, just started
+36947:C 07 Mar 2023 14:00:34.890 # Configuration loaded
+36947:M 07 Mar 2023 14:00:34.891 * monotonic clock: POSIX clock_gettime
+36947:M 07 Mar 2023 14:00:34.892 * Running mode=standalone, port=6379.
+36947:M 07 Mar 2023 14:00:34.892 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36947:M 07 Mar 2023 14:00:34.892 # Server initialized
+36947:M 07 Mar 2023 14:00:34.892 * Ready to accept connections
+36947:signal-handler (1678165234) Received SIGTERM scheduling shutdown...
+36947:M 07 Mar 2023 14:00:35.094 # User requested shutdown...
+36947:M 07 Mar 2023 14:00:35.094 # Redis is now ready to exit, bye bye...
+36971:C 07 Mar 2023 14:01:24.102 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36971:C 07 Mar 2023 14:01:24.102 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36971, just started
+36971:C 07 Mar 2023 14:01:24.103 # Configuration loaded
+36971:M 07 Mar 2023 14:01:24.104 * monotonic clock: POSIX clock_gettime
+36971:M 07 Mar 2023 14:01:24.105 * Running mode=standalone, port=6379.
+36971:M 07 Mar 2023 14:01:24.105 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36971:M 07 Mar 2023 14:01:24.105 # Server initialized
+36971:M 07 Mar 2023 14:01:24.105 * Ready to accept connections
+36971:signal-handler (1678165284) Received SIGTERM scheduling shutdown...
+36971:M 07 Mar 2023 14:01:24.307 # User requested shutdown...
+36971:M 07 Mar 2023 14:01:24.307 # Redis is now ready to exit, bye bye...
+36999:C 07 Mar 2023 14:01:39.071 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+36999:C 07 Mar 2023 14:01:39.071 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=36999, just started
+36999:C 07 Mar 2023 14:01:39.072 # Configuration loaded
+36999:M 07 Mar 2023 14:01:39.073 * monotonic clock: POSIX clock_gettime
+36999:M 07 Mar 2023 14:01:39.073 * Running mode=standalone, port=6379.
+36999:M 07 Mar 2023 14:01:39.073 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+36999:M 07 Mar 2023 14:01:39.074 # Server initialized
+36999:M 07 Mar 2023 14:01:39.074 * Ready to accept connections
+36999:signal-handler (1678165299) Received SIGTERM scheduling shutdown...
+36999:M 07 Mar 2023 14:01:39.275 # User requested shutdown...
+36999:M 07 Mar 2023 14:01:39.275 # Redis is now ready to exit, bye bye...
+37042:C 07 Mar 2023 14:02:24.775 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+37042:C 07 Mar 2023 14:02:24.775 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=37042, just started
+37042:C 07 Mar 2023 14:02:24.775 # Configuration loaded
+37042:M 07 Mar 2023 14:02:24.776 * monotonic clock: POSIX clock_gettime
+37042:M 07 Mar 2023 14:02:24.777 * Running mode=standalone, port=6379.
+37042:M 07 Mar 2023 14:02:24.777 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+37042:M 07 Mar 2023 14:02:24.777 # Server initialized
+37042:M 07 Mar 2023 14:02:24.778 * Ready to accept connections
+37042:signal-handler (1678165344) Received SIGTERM scheduling shutdown...
+37042:M 07 Mar 2023 14:02:24.979 # User requested shutdown...
+37042:M 07 Mar 2023 14:02:24.979 # Redis is now ready to exit, bye bye...
+37062:C 07 Mar 2023 14:02:31.521 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+37062:C 07 Mar 2023 14:02:31.521 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=37062, just started
+37062:C 07 Mar 2023 14:02:31.521 # Configuration loaded
+37062:M 07 Mar 2023 14:02:31.522 * monotonic clock: POSIX clock_gettime
+37062:M 07 Mar 2023 14:02:31.523 * Running mode=standalone, port=6379.
+37062:M 07 Mar 2023 14:02:31.523 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+37062:M 07 Mar 2023 14:02:31.523 # Server initialized
+37062:M 07 Mar 2023 14:02:31.524 * Ready to accept connections
+37062:signal-handler (1678165351) Received SIGTERM scheduling shutdown...
+37062:M 07 Mar 2023 14:02:31.725 # User requested shutdown...
+37062:M 07 Mar 2023 14:02:31.726 # Redis is now ready to exit, bye bye...

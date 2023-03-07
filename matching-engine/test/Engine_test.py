@@ -79,7 +79,7 @@ class EngineTest(unittest.TestCase):
         # post limit order that can cross
         order_json = {
             "user": "testuser3", 
-            "order_id": "random1", 
+            "order_id": "random3", 
             "is_bid": True, 
             "limit_price": 100, 
             "amount": 10, 
@@ -87,16 +87,10 @@ class EngineTest(unittest.TestCase):
         }
         self.engine.post_limit_order(json.dumps(order_json))
         order_redis = json.loads(self.engine.r.get(order_json["order_id"]))
-                
-        print("PARTIALLY CROSSED ORDER")
-        print(order_redis)
-            
-        # self.assertEqual(len(filled_orders), 1)
-        # self.assertEqual(filled_orders[0].order_id, "random3")
-        # self.assertEqual(partial_fill, None)
-        # self.assertEqual(order.amount, 5)
-        # self.assertEqual(counter_orders[0].amount, 0)
-        # self.assertEqual(counter_orders[1].amount, 0)
+
+        self.assertEqual(order_redis["amount"], 5)
+        self.assertEqual(self.engine.r.exists("random1"), False)
+        self.assertEqual(self.engine.r.exists("random2"), True)
 
 
 if __name__ == '__main__':
