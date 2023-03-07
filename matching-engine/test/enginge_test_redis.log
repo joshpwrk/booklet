@@ -1,0 +1,128 @@
+27855:M 06 Mar 2023 22:40:08.359 # User requested shutdown...
+27855:M 06 Mar 2023 22:40:08.360 * Saving the final RDB snapshot before exiting.
+27855:M 06 Mar 2023 22:40:08.380 * DB saved on disk
+27855:M 06 Mar 2023 22:40:08.380 # Redis is now ready to exit, bye bye...
+29471:C 07 Mar 2023 09:21:23.402 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29471:C 07 Mar 2023 09:21:23.403 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29471, just started
+29471:C 07 Mar 2023 09:21:23.403 # Configuration loaded
+29471:M 07 Mar 2023 09:21:23.404 * monotonic clock: POSIX clock_gettime
+29471:M 07 Mar 2023 09:21:23.407 * Running mode=standalone, port=6379.
+29471:M 07 Mar 2023 09:21:23.407 # WARNING: The TCP backlog setting of 511 cannot be enforced because kern.ipc.somaxconn is set to the lower value of 128.
+29471:M 07 Mar 2023 09:21:23.407 # Server initialized
+29471:M 07 Mar 2023 09:21:23.407 * Loading RDB produced by version 7.0.9
+29471:M 07 Mar 2023 09:21:23.407 * RDB age 38475 seconds
+29471:M 07 Mar 2023 09:21:23.407 * RDB memory usage when created 1.38 Mb
+29471:M 07 Mar 2023 09:21:23.407 * Done loading RDB, keys loaded: 3, keys expired: 0.
+29471:M 07 Mar 2023 09:21:23.407 * DB loaded from disk: 0.001 seconds
+29471:M 07 Mar 2023 09:21:23.408 * Ready to accept connections
+29549:C 07 Mar 2023 09:22:51.068 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29549:C 07 Mar 2023 09:22:51.068 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29549, just started
+29549:C 07 Mar 2023 09:22:51.068 # Configuration loaded
+29549:M 07 Mar 2023 09:22:51.070 * monotonic clock: POSIX clock_gettime
+29549:M 07 Mar 2023 09:22:51.070 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29549:M 07 Mar 2023 09:22:51.071 # Failed listening on port 6379 (TCP), aborting.
+29574:C 07 Mar 2023 09:23:04.812 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29574:C 07 Mar 2023 09:23:04.812 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29574, just started
+29574:C 07 Mar 2023 09:23:04.812 # Configuration loaded
+29574:M 07 Mar 2023 09:23:04.814 * monotonic clock: POSIX clock_gettime
+29574:M 07 Mar 2023 09:23:04.814 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29574:M 07 Mar 2023 09:23:04.814 # Failed listening on port 6379 (TCP), aborting.
+29632:C 07 Mar 2023 09:23:37.375 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29632:C 07 Mar 2023 09:23:37.376 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29632, just started
+29632:C 07 Mar 2023 09:23:37.376 # Configuration loaded
+29632:M 07 Mar 2023 09:23:37.377 * monotonic clock: POSIX clock_gettime
+29632:M 07 Mar 2023 09:23:37.377 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29632:M 07 Mar 2023 09:23:37.377 # Failed listening on port 6379 (TCP), aborting.
+29693:C 07 Mar 2023 09:24:59.222 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29693:C 07 Mar 2023 09:24:59.223 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29693, just started
+29693:C 07 Mar 2023 09:24:59.223 # Configuration loaded
+29693:M 07 Mar 2023 09:24:59.224 * monotonic clock: POSIX clock_gettime
+29693:M 07 Mar 2023 09:24:59.225 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29693:M 07 Mar 2023 09:24:59.225 # Failed listening on port 6379 (TCP), aborting.
+29727:C 07 Mar 2023 09:25:23.975 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29727:C 07 Mar 2023 09:25:23.975 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29727, just started
+29727:C 07 Mar 2023 09:25:23.975 # Configuration loaded
+29727:M 07 Mar 2023 09:25:23.976 * monotonic clock: POSIX clock_gettime
+29727:M 07 Mar 2023 09:25:23.977 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29727:M 07 Mar 2023 09:25:23.977 # Failed listening on port 6379 (TCP), aborting.
+29795:C 07 Mar 2023 09:27:21.327 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29795:C 07 Mar 2023 09:27:21.327 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29795, just started
+29795:C 07 Mar 2023 09:27:21.328 # Configuration loaded
+29795:M 07 Mar 2023 09:27:21.329 * monotonic clock: POSIX clock_gettime
+29795:M 07 Mar 2023 09:27:21.330 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29795:M 07 Mar 2023 09:27:21.330 # Failed listening on port 6379 (TCP), aborting.
+29836:C 07 Mar 2023 09:28:05.390 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29836:C 07 Mar 2023 09:28:05.390 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29836, just started
+29836:C 07 Mar 2023 09:28:05.390 # Configuration loaded
+29836:M 07 Mar 2023 09:28:05.391 * monotonic clock: POSIX clock_gettime
+29836:M 07 Mar 2023 09:28:05.393 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29836:M 07 Mar 2023 09:28:05.393 # Failed listening on port 6379 (TCP), aborting.
+29875:C 07 Mar 2023 09:28:35.699 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29875:C 07 Mar 2023 09:28:35.699 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29875, just started
+29875:C 07 Mar 2023 09:28:35.700 # Configuration loaded
+29875:M 07 Mar 2023 09:28:35.701 * monotonic clock: POSIX clock_gettime
+29875:M 07 Mar 2023 09:28:35.701 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29875:M 07 Mar 2023 09:28:35.701 # Failed listening on port 6379 (TCP), aborting.
+29903:C 07 Mar 2023 09:29:06.114 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+29903:C 07 Mar 2023 09:29:06.114 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=29903, just started
+29903:C 07 Mar 2023 09:29:06.114 # Configuration loaded
+29903:M 07 Mar 2023 09:29:06.115 * monotonic clock: POSIX clock_gettime
+29903:M 07 Mar 2023 09:29:06.116 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+29903:M 07 Mar 2023 09:29:06.116 # Failed listening on port 6379 (TCP), aborting.
+30079:C 07 Mar 2023 09:33:23.824 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+30079:C 07 Mar 2023 09:33:23.824 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=30079, just started
+30079:C 07 Mar 2023 09:33:23.824 # Configuration loaded
+30079:M 07 Mar 2023 09:33:23.825 * monotonic clock: POSIX clock_gettime
+30079:M 07 Mar 2023 09:33:23.826 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+30079:M 07 Mar 2023 09:33:23.826 # Failed listening on port 6379 (TCP), aborting.
+30131:C 07 Mar 2023 09:34:47.775 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+30131:C 07 Mar 2023 09:34:47.775 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=30131, just started
+30131:C 07 Mar 2023 09:34:47.775 # Configuration loaded
+30131:M 07 Mar 2023 09:34:47.777 * monotonic clock: POSIX clock_gettime
+30131:M 07 Mar 2023 09:34:47.777 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+30131:M 07 Mar 2023 09:34:47.777 # Failed listening on port 6379 (TCP), aborting.
+29471:M 07 Mar 2023 09:36:24.085 * 1 changes in 900 seconds. Saving...
+29471:M 07 Mar 2023 09:36:24.086 * Background saving started by pid 30350
+30350:C 07 Mar 2023 09:36:24.108 * DB saved on disk
+30350:C 07 Mar 2023 09:36:24.109 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+29471:M 07 Mar 2023 09:36:24.186 * Background saving terminated with success
+30698:C 07 Mar 2023 09:50:20.339 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+30698:C 07 Mar 2023 09:50:20.339 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=30698, just started
+30698:C 07 Mar 2023 09:50:20.340 # Configuration loaded
+30698:M 07 Mar 2023 09:50:20.340 * monotonic clock: POSIX clock_gettime
+30698:M 07 Mar 2023 09:50:20.341 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+30698:M 07 Mar 2023 09:50:20.341 # Failed listening on port 6379 (TCP), aborting.
+30738:C 07 Mar 2023 09:51:25.745 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+30738:C 07 Mar 2023 09:51:25.745 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=30738, just started
+30738:C 07 Mar 2023 09:51:25.745 # Configuration loaded
+30738:M 07 Mar 2023 09:51:25.746 * monotonic clock: POSIX clock_gettime
+30738:M 07 Mar 2023 09:51:25.747 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+30738:M 07 Mar 2023 09:51:25.747 # Failed listening on port 6379 (TCP), aborting.
+30819:C 07 Mar 2023 09:54:16.863 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+30819:C 07 Mar 2023 09:54:16.863 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=30819, just started
+30819:C 07 Mar 2023 09:54:16.863 # Configuration loaded
+30819:M 07 Mar 2023 09:54:16.864 * monotonic clock: POSIX clock_gettime
+30819:M 07 Mar 2023 09:54:16.865 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+30819:M 07 Mar 2023 09:54:16.865 # Failed listening on port 6379 (TCP), aborting.
+30937:C 07 Mar 2023 09:55:51.159 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+30937:C 07 Mar 2023 09:55:51.159 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=30937, just started
+30937:C 07 Mar 2023 09:55:51.159 # Configuration loaded
+30937:M 07 Mar 2023 09:55:51.160 * monotonic clock: POSIX clock_gettime
+30937:M 07 Mar 2023 09:55:51.161 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+30937:M 07 Mar 2023 09:55:51.161 # Failed listening on port 6379 (TCP), aborting.
+29471:M 07 Mar 2023 09:55:51.226 * 1 changes in 900 seconds. Saving...
+29471:M 07 Mar 2023 09:55:51.227 * Background saving started by pid 30943
+30943:C 07 Mar 2023 09:55:51.250 * DB saved on disk
+30943:C 07 Mar 2023 09:55:51.251 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+29471:M 07 Mar 2023 09:55:51.328 * Background saving terminated with success
+31001:C 07 Mar 2023 09:56:29.205 # oO0OoO0OoO0Oo Redis is starting oO0OoO0OoO0Oo
+31001:C 07 Mar 2023 09:56:29.205 # Redis version=7.0.9, bits=64, commit=00000000, modified=0, pid=31001, just started
+31001:C 07 Mar 2023 09:56:29.206 # Configuration loaded
+31001:M 07 Mar 2023 09:56:29.207 * monotonic clock: POSIX clock_gettime
+31001:M 07 Mar 2023 09:56:29.208 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
+31001:M 07 Mar 2023 09:56:29.208 # Failed listening on port 6379 (TCP), aborting.
+29471:M 07 Mar 2023 10:10:52.023 * 1 changes in 900 seconds. Saving...
+29471:M 07 Mar 2023 10:10:52.024 * Background saving started by pid 31851
+31851:C 07 Mar 2023 10:10:52.045 * DB saved on disk
+31851:C 07 Mar 2023 10:10:52.046 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+29471:M 07 Mar 2023 10:10:52.126 * Background saving terminated with success
