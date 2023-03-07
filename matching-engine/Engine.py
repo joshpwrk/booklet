@@ -24,8 +24,6 @@ class Engine:
     def post_limit_order(self, limit_order: str):
         order = LimitOrder(limit_order)
 
-        print("IS BID")
-        print(order.is_bid)
         # Get the best counterparties for the order
         instrument = Instrument(self.r, order.instrument_id)
         counter_orders = instrument.get_crossable_orders(
@@ -33,7 +31,6 @@ class Engine:
             order.limit_price, 
             self.max_counterparties
         )
-        print(counter_orders)
 
         # Begin pipe to batch all redis writes into atomic transaction
         pipe = self.r.pipeline()
@@ -43,7 +40,6 @@ class Engine:
             counter_orders = list(map(lambda x: LimitOrder(x), self.r.mget(counter_orders))) 
             (filled_orders, partial_fill) = self.pairoff(order, counter_orders)
 
-            print(filled_orders[0].order_id)
             # delete filled orders from redis
             [order.delete_from_redis(pipe) for order in filled_orders]
             # update partial filled order
@@ -51,8 +47,6 @@ class Engine:
 
         # Save whatever is left to redis
         if order.amount > 0:
-            print("ORDER TO POST")
-            print(order.amount)
             order.post_to_redis(pipe)
         
         # Execute atomically in one transaction
@@ -71,7 +65,6 @@ class Engine:
         for counter_order in counter_orders:
             # Execute as much of the order as possible
             amount = min(order.amount, counter_order.amount)
-            print(amount)
             order.amount -= amount
             counter_order.amount -= amount
             

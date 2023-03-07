@@ -28,7 +28,6 @@ class EngineTest(unittest.TestCase):
         order2_json = {"user": "testuser2", "order_id": "random2", "is_bid": True, "limit_price": 100, "amount": 10, "order_expiry": 1679155437}
 
         # Add the orders to the Redis set
-        print("POSTING...")
         self.engine.post_limit_order(json.dumps(order1_json))
         self.engine.post_limit_order(json.dumps(order2_json))
 
@@ -36,13 +35,10 @@ class EngineTest(unittest.TestCase):
         order1_from_redis = self.engine.r.get(order1_json["order_id"])
         order2_from_redis = self.engine.r.get(order2_json["order_id"])
 
-        print("PRINT ALL KEYS...")
-        for key in self.engine.r.scan_iter("*"):
-            # value = self.engine.r.get(key)
-            print(key.decode())
-
-        print(order1_json)
-        print(json.loads(order1_from_redis))
+        # print("PRINT ALL KEYS...")
+        # for key in self.engine.r.scan_iter("*"):
+        #     # value = self.engine.r.get(key)
+        #     print(key.decode())
 
         self.assertEqual(order1_json, json.loads(order1_from_redis))
         self.assertEqual(order2_json, json.loads(order2_from_redis))
@@ -130,16 +126,12 @@ class EngineTest(unittest.TestCase):
             "order_expiry": 1679155437
         }
         self.engine.post_limit_order(json.dumps(order_json))
-        print("PRINT ALL KEYS...")
-        for key in self.engine.r.scan_iter("*"):
-            # value = self.engine.r.get(key)
-            print(key.decode())
 
+        # confirm not all orders are crossed
         self.assertEqual(self.engine.r.exists("random3"), False)
         self.assertEqual(self.engine.r.exists("random1"), False)
         self.assertEqual(self.engine.r.exists("random2"), True)
-
-        # order_redis = json.loads(self.engine.r.get(order_json["order_id"]))
+        self.assertEqual(3, json.loads(self.engine.r.get("random2"))["amount"])
 
 
 if __name__ == '__main__':

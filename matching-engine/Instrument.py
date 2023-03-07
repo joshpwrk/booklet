@@ -14,12 +14,9 @@ class Instrument:
             max= "inf" if is_bid else limit_price, 
             start=0, num=max_counteparties
         )
-        print("ORDER_IDS")
-        print(order_ids)
 
         # automatically return asc vs desc order depending on type
-        if (is_bid):
-            order_ids = order_ids[::-1]
+        if (is_bid): order_ids = order_ids[::-1]
 
         # prune out the ones that expired in one redis operation
         # (note this doesn't clear the orderedsets)
