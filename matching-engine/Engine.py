@@ -19,13 +19,15 @@ class Engine:
         self.queue = redis_client = launch_redis_client(db=1)
 
         self.max_counterparties = max_counterparties
+        self.run_flag = False
 
     #########
     # QUEUE #
     #########
 
     def consume_queue(self):
-        while True:
+        self.run_flag = True
+        while self.run_flag:
             # Read all items in the zset
             items = self.queue.zrange("queue", 0, -1, withscores=False)
             
@@ -34,14 +36,16 @@ class Engine:
                 for item in items:
                     # Convert the item from bytes to string
                     item = item.decode('utf-8')
+
                     # Process the item
                     print(item)
+                    self.post_limit_order(item)
         
                 # Remove all processed items from the zset
                 self.queue.zrem("queue", *items)
             else:
-                # Wait for some time before checking the zset again
-                time.sleep(1)
+                # Check queue every 1ms if queue empty
+                time.sleep(0.001)
 
     ########
     # POST #

@@ -18,24 +18,19 @@ class EngineQueueTest(unittest.TestCase):
         print("LAUNCHING REDIS...")
         self.redis_server = subprocess.Popen(['redis-server', redis_config_path, '--logfile', redis_log_file])
 
-        print("LAUNCHING ENGINE...")
-        self.engine = Engine(max_counterparties=5)
-
     def tearDown(self):
         print("SHUT DOWN REDIS...")
         self.redis_server.terminate()
         self.redis_server.wait()
 
     def test_read_queue(self):
-        # Start parallel thread simulating web-socket pushing to queue
-        queue_push_thread = threading.Thread(target=EngineQueueTest.push_to_queue)
+        # Start engine in parallel thread 
+        flag = True
+        queue_push_thread = threading.Thread(target=self.consume_queue, args=(flag,))
         queue_push_thread.start()
 
         # Check that the orders were added correctly
-        self.engine.consume_queue()
-
-    @classmethod
-    def push_to_queue(cls):
+        orderbook_client = launch_redis_client(db=0)
         queue_push_client = launch_redis_client(db=1)
 
         # Add the orders to the Redis set
@@ -48,7 +43,21 @@ class EngineQueueTest(unittest.TestCase):
         queue_push_client.zadd("queue", {json.dumps(order2_json): round(time.time() * 1000)})
         time.sleep(0.00001) # 10ms
         queue_push_client.zadd("queue", {json.dumps(order3_json): round(time.time() * 1000)})
-        time.sleep(0.00001) # 10ms
+
+        # confirm orders added:
+        time.sleep(1)
+        self.assertEqual(orderbook_client.exists("random1"), True)
+        self.assertEqual(orderbook_client.exists("random2"), True)
+        self.assertEqual(orderbook_client.exists("random3"), True)
+        time.sleep(1)
+
+        # join thread
+        self.engine.run_flag = False
+
+    def consume_queue(self, flag):
+        print("LAUNCHING ENGINE...")
+        self.engine = Engine(max_counterparties=5)
+        self.engine.consume_queue()
 
 
 if __name__ == '__main__':
