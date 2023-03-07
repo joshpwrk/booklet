@@ -2,7 +2,7 @@ import unittest
 from ..Engine import Engine
 import uuid
 from ..LimitOrder import LimitOrder
-from ..redis_utils import launch_redis_client
+from ..util import launch_redis_client
 import json 
 import subprocess
 import os

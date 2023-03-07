@@ -3,7 +3,7 @@ import uuid
 import redis
 from .LimitOrder import LimitOrder
 from .Instrument import Instrument
-from .redis_utils import launch_redis_client
+from .util import launch_redis_client
 from datetime import datetime
 import time
 
