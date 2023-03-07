@@ -121,3 +121,8 @@
 31001:M 07 Mar 2023 09:56:29.207 * monotonic clock: POSIX clock_gettime
 31001:M 07 Mar 2023 09:56:29.208 # Warning: Could not create server TCP listening socket 127.0.0.1:6379: bind: Address already in use
 31001:M 07 Mar 2023 09:56:29.208 # Failed listening on port 6379 (TCP), aborting.
+29471:M 07 Mar 2023 10:10:52.023 * 1 changes in 900 seconds. Saving...
+29471:M 07 Mar 2023 10:10:52.024 * Background saving started by pid 31851
+31851:C 07 Mar 2023 10:10:52.045 * DB saved on disk
+31851:C 07 Mar 2023 10:10:52.046 * Fork CoW for RDB: current 0 MB, peak 0 MB, average 0 MB
+29471:M 07 Mar 2023 10:10:52.126 * Background saving terminated with success
