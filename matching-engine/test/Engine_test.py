@@ -31,7 +31,6 @@ class EngineTest(unittest.TestCase):
         self.engine.post_limit_order(json.dumps(order2_json))
 
         # Check that the orders were added correctly
-        print("GETTING 1...")
         order1_from_redis = self.engine.r.get(order1_json["order_id"])
         order2_from_redis = self.engine.r.get(order2_json["order_id"])
 
@@ -39,9 +38,7 @@ class EngineTest(unittest.TestCase):
         for key in self.engine.r.scan_iter("*"):
             # value = self.engine.r.get(key)
             print(key.decode())
-            # print(value)
 
-        print(order1_from_redis)
         self.assertEqual(order1_json, json.loads(order1_from_redis))
         self.assertEqual(order2_json, json.loads(order2_from_redis))
 
