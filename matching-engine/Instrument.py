@@ -6,18 +6,17 @@ class Instrument:
         self.id = instrument_id
 
     # TODO: eventually would be nice to sort by entry time
-    def get_orders_within_limit_price(self, is_bid: bool, limit_price: float, max_counteparties: int):
+    def get_crossable_orders(self, is_bid: bool, limit_price: float, max_counteparties: int):
         # use redis z sets to get all orders within range
         order_ids = self.r.zrangebyscore(
             self.redis_price_set(self.id, is_bid),
-            min= "-inf" if is_bid else limit_price, 
-            max= limit_price if is_bid else "inf", 
+            min= limit_price if is_bid else "-inf", 
+            max= "inf" if is_bid else limit_price, 
             start=0, num=max_counteparties
         )
 
         # automatically return asc vs desc order depending on type
-        if (is_bid):
-            order_ids = order_ids[::-1]
+        if (is_bid): order_ids = order_ids[::-1]
 
         # prune out the ones that expired in one redis operation
         # (note this doesn't clear the orderedsets)

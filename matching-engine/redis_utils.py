@@ -6,7 +6,6 @@ def launch_redis_client(host='localhost', port=6379, db=0):
     while True:
         try:
             r.ping()
-            print("REDIS READY FOR CONNECTION...")
             break
         except redis.exceptions.ConnectionError:
             time.sleep(0.1)

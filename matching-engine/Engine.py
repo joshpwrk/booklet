@@ -26,7 +26,7 @@ class Engine:
 
         # Get the best counterparties for the order
         instrument = Instrument(self.r, order.instrument_id)
-        counter_orders = instrument.get_orders_within_limit_price(
+        counter_orders = instrument.get_crossable_orders(
             not order.is_bid, 
             order.limit_price, 
             self.max_counterparties
