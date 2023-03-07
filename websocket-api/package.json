@@ -1,0 +1,24 @@
+{
+  "name": "websocket-api",
+  "version": "1.0.0",
+  "description": "Websocket API for Booklet",
+  "main": "server.js",
+  "dependencies": {
+    "socket.io": "^4.6.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/joshpwrk/booklet.git"
+  },
+  "author": "Joshua Kim",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/joshpwrk/booklet/issues"
+  },
+  "homepage": "https://github.com/joshpwrk/booklet#readme"
+}
