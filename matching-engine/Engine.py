@@ -5,6 +5,7 @@ from .LimitOrder import LimitOrder
 from .Instrument import Instrument
 from .redis_utils import launch_redis_client
 from datetime import datetime
+import time
 
 # The engine uses a dual DB model in redis:
 # 1) OrderQueue which is added to by any websocket implementation
@@ -26,18 +27,18 @@ class Engine:
     def consume_queue(self):
         while True:
             # Read all items in the zset
-            items = self.queue.zrange("queue", 0, -1, withscores=True)
+            items = self.queue.zrange("queue", 0, -1, withscores=False)
             
             if items:
                 # Process each item
-                for item, score in items:
+                for item in items:
                     # Convert the item from bytes to string
                     item = item.decode('utf-8')
                     # Process the item
                     print(item)
         
-                    # Remove all processed items from the zset
-                    # r.zremrangebyrank('my_zset', 0, len(items)-1)
+                # Remove all processed items from the zset
+                self.queue.zrem("queue", *items)
             else:
                 # Wait for some time before checking the zset again
                 time.sleep(1)
