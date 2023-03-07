@@ -33,6 +33,10 @@ class LimitOrder:
         pipe.delete(self.order_id)
  
     def post_to_redis(self, pipe: redis.client.Pipeline):
+        print("INSIDE LIMIT ORDER")
+        print(self.order_id)
+        print(self.json)
+
         pipe.zadd(self.price_zset_key, {self.order_id: self.limit_price})
         pipe.zadd(self.expiry_zset_key, {self.order_id: self.order_expiry})
         pipe.set(self.order_id, json.dumps(self.json))

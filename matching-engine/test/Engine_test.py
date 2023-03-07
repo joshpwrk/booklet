@@ -20,19 +20,27 @@ class EngineTest(unittest.TestCase):
 
     def test_post_non_crossing_limit_orders(self):
         order1_json = {"user": "testuser1", "order_id": "random1", "is_bid": True, "limit_price": 100, "amount": 10, "order_expiry": 1679155437}
-        order2_json = {"user": "testuser1", "order_id": "random2", "is_bid": True, "limit_price": 100, "amount": 10, "order_expiry": 1679155437}
+        order2_json = {"user": "testuser2", "order_id": "random2", "is_bid": True, "limit_price": 100, "amount": 10, "order_expiry": 1679155437}
 
         # Add the orders to the Redis set
         print("POSTING 1...")
         print(json.dumps(order1_json))
         self.engine.post_limit_order(json.dumps(order1_json))
         print("POSTING 2...")
+        print(json.dumps(order2_json))
         self.engine.post_limit_order(json.dumps(order2_json))
 
         # Check that the orders were added correctly
         print("GETTING 1...")
         order1_from_redis = self.engine.r.get(order1_json["order_id"])
         order2_from_redis = self.engine.r.get(order2_json["order_id"])
+
+        print("PRINT ALL KEYS...")
+        for key in self.engine.r.scan_iter("*"):
+            # value = self.engine.r.get(key)
+            print(key.decode())
+            # print(value)
+
         print(order1_from_redis)
         self.assertEqual(order1_json, json.loads(order1_from_redis))
         self.assertEqual(order2_json, json.loads(order2_from_redis))
