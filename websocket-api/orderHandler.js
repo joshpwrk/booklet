@@ -1,9 +1,20 @@
-const addOrder = (payload) => {  
-    console.log(`Received order: ${payload}`);
+
+async function createOrder(payload) {
+    const socket = this;
+    
+    // notify the other users
+    socket.broadcast.emit("order:created", "yay");
+
+    console.log(`Created order: ${payload}`);
 }
 
-const cancelOrder = (payload) => {  
-    console.log(`Cancelled order: ${payload}`);
+async function deleteOrder(payload) {
+    const socket = this;
+    
+    // notify the other users
+    socket.broadcast.emit("order:deleted", "yay");
+
+    console.log(`Deleted order: ${payload}`);
 }
   
-export { addOrder, cancelOrder };
+export { createOrder, deleteOrder };

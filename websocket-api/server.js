@@ -1,13 +1,13 @@
 import { Server } from "socket.io";
-import { addOrder, cancelOrder } from "./orderHandler";
+import { createOrder, deleteOrder } from "./orderHandler";
 
 const io = new Server({ /* options */ });
 
 io.on('connection', (socket) => {
     console.log('A client connected');
 
-    socket.on("order:add", addOrder);
-    socket.on("order:cancel", cancelOrder);
+    socket.on("order:create", createOrder);
+    socket.on("order:delete", deleteOrder);
 });
 
 
