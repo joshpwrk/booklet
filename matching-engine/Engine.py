@@ -14,8 +14,33 @@ from datetime import datetime
 # Another benefit is that the websocket and matching-engine can be swapped out.
 class Engine:
     def __init__(self, max_counterparties: int):
-        self.r = redis_client = launch_redis_client()
+        self.r = redis_client = launch_redis_client(db=0)
+        self.queue = redis_client = launch_redis_client(db=1)
+
         self.max_counterparties = max_counterparties
+
+    #########
+    # QUEUE #
+    #########
+
+    def consume_queue(self):
+        while True:
+            # Read all items in the zset
+            items = self.queue.zrange("queue", 0, -1, withscores=True)
+            
+            if items:
+                # Process each item
+                for item, score in items:
+                    # Convert the item from bytes to string
+                    item = item.decode('utf-8')
+                    # Process the item
+                    print(item)
+        
+                    # Remove all processed items from the zset
+                    # r.zremrangebyrank('my_zset', 0, len(items)-1)
+            else:
+                # Wait for some time before checking the zset again
+                time.sleep(1)
 
     ########
     # POST #
