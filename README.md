@@ -1,11 +1,11 @@
 # Booklet
-A super light order-book implementation for pre-PMF exchanges
+Monorepo of a super light order-book for pre-PMF exchanges.
 
-The goals is to creat the simplest MVP that'll break just beyond the point of Product-Market-Fit.
+The goals is to create the simplest MVP that'll break just beyond the point of Product-Market-Fit.
 
 ## PMF
 
-Defining this is tough, but generally if using dYdX/Deribit as a high bar, we can come to these conclusions:
+Defining this is tough, but using dYdX/Deribit as a conservative threshold, we can come to these conclusions:
 - @ 10,000 req/sec, response around 100ms 
 - up to 4GB live order-book size
 - up to 2000 traders per sec + ~5 highly-active market makers 
