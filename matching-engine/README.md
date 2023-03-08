@@ -17,4 +17,11 @@ redis-server path_to_redis.conf
 redis-cli ping
 ```
 
+## Testing
+testing scripts will spin up and wind down redis servers on their own
+
+```bash
+python -m unittest -v matching-engine/test/*.py
+```
+
 

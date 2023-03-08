@@ -3,19 +3,49 @@ import uuid
 import redis
 from .LimitOrder import LimitOrder
 from .Instrument import Instrument
-from .redis_utils import launch_redis_client
+from .util import launch_redis_client
 from datetime import datetime
+import time
 
 # The engine uses a dual DB model in redis:
-# 1) OrderQueue which is added to by any websocket implementation
-# 2) OrderBook which holds all the outstanding limit orders
+# 1) OrderQueue: self.queue which is added to by any websocket implementation
+# 2) OrderBook: self.r which holds all the outstanding limit orders
 
-# Having an orderqueue reduces alot of headaches with preventing race conditions.
+# Having an OrderQueue reduces alot of headaches with preventing race conditions.
 # Another benefit is that the websocket and matching-engine can be swapped out.
 class Engine:
     def __init__(self, max_counterparties: int):
-        self.r = redis_client = launch_redis_client()
+        self.r = redis_client = launch_redis_client(db=0)
+        self.queue = redis_client = launch_redis_client(db=1)
+        self.run_flag = False
+
         self.max_counterparties = max_counterparties
+
+    #########
+    # QUEUE #
+    #########
+
+    def consume_queue(self):
+        self.run_flag = True
+        while self.run_flag:
+            # Read all items in the zset
+            items = self.queue.zrange("queue", 0, -1, withscores=False)
+            
+            if items:
+                # Process each item
+                for item in items:
+                    # Convert the item from bytes to string
+                    item = item.decode('utf-8')
+
+                    # Process the item
+                    print(item)
+                    self.post_limit_order(item)
+        
+                # Remove all processed items from the zset
+                self.queue.zrem("queue", *items)
+            else:
+                # Check queue every 1ms if queue empty
+                time.sleep(0.001)
 
     ########
     # POST #
