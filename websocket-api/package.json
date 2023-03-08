@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "Websocket API for Booklet",
   "main": "server.js",
+  "type": "module",
   "dependencies": {
     "socket.io": "^4.6.1"
   },

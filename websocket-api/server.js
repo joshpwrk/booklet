@@ -1,5 +1,5 @@
 import { Server } from "socket.io";
-import { createOrder, deleteOrder } from "./orderHandler";
+import { createOrder, deleteOrder } from "./orderHandler.js";
 
 const io = new Server({ /* options */ });
 
