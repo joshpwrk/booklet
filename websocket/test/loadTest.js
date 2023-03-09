@@ -1,14 +1,15 @@
 import { io } from "socket.io-client";
 
 const URL = process.env.URL || "http://localhost:3000";
-const MAX_CLIENTS = 100;
+const MAX_CLIENTS = 200;
 const POLLING_PERCENTAGE = 0;
-const CLIENT_CREATION_INTERVAL_IN_MS = 100;
+const CLIENT_CREATION_INTERVAL_IN_MS = 10;
 const EMIT_INTERVAL_IN_MS = 100;
 
 let clientCount = 0;
-let lastReport = Date.now();
+let lastReport = new Date().getTime();
 let packetsSinceLastReport = 0;
+let processedSinceLastReport = 0;
 
 const createClient = () => {
     // for demonstration purposes, some clients stay stuck in HTTP long-polling
@@ -20,12 +21,13 @@ const createClient = () => {
         transports,
     });
 
-    const user_id = Math.round(Math.random() * MAX_CLIENTS)
+    const user_id = Math.round(Math.random() * 1000 * MAX_CLIENTS)
     setInterval(() => {
+        packetsSinceLastReport++
         // console.log("sending packet", packetsSinceLastReport++)
             socket.emit("order:create", JSON.stringify({
                 "user": "user_" + user_id, 
-                "is_bid": Math.random() > 0.5, 
+                "is_bid": true, // Math.random() > 0.5, // remove crossing to check socket / redis
                 "limit_price": Math.round(Math.random() * 1000), 
                 "amount": Math.round(Math.random() * 10), 
                 "order_expiry": 1679155437
@@ -35,8 +37,8 @@ const createClient = () => {
     );
 
     socket.on("order:created", (payload) => {
-        packetsSinceLastReport++
-        // console.log(payload);
+        processedSinceLastReport++
+        // console.log(processedSinceLastReport);
     });
 
     socket.on("disconnect", (reason) => {
@@ -51,19 +53,23 @@ const createClient = () => {
 createClient();
 
 const printReport = () => {
-    const now = Date.now();
+    const now = new Date().getTime();
     const durationSinceLastReport = (now - lastReport) / 1000;
     const packetsPerSeconds = (
         packetsSinceLastReport / durationSinceLastReport
-        // todo: currently catching 5 events per order creation...
     ).toFixed(2);
 
-    console.log(
-        `client count: ${clientCount} ; average packets received per second: ${packetsPerSeconds}`
-    );
+    const processedPerSeconds = (
+        processedSinceLastReport / durationSinceLastReport
+    )
 
-    packetsSinceLastReport = 0;
-    lastReport = now;
+  console.log(
+    `client count: ${clientCount} ; average packets received per second: ${packetsPerSeconds} ; processed per second: ${processedPerSeconds}`
+  );
+
+  packetsSinceLastReport = 0;
+  processedSinceLastReport = 0;
+  lastReport = now;
 };
 
 // printReport()

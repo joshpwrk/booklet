@@ -55,10 +55,6 @@ io.on('connection', (socket) => {
 
   socket.on('order:create', createOrder(redisQueue));
   socket.on("order:delete", deleteOrder);
-  socket.on("client to server event", () => {
-    console.log("received packet")
-    socket.emit("server to client event");
-  });
 });
 
 io.listen(3000, () => {
