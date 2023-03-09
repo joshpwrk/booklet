@@ -1,10 +1,10 @@
 import { io } from "socket.io-client";
 
 const URL = process.env.URL || "http://localhost:3000";
-const MAX_CLIENTS = 100;
+const MAX_CLIENTS = 10;
 const POLLING_PERCENTAGE = 0;
-const CLIENT_CREATION_INTERVAL_IN_MS = 10;
-const EMIT_INTERVAL_IN_MS = 10;
+const CLIENT_CREATION_INTERVAL_IN_MS = 100;
+const EMIT_INTERVAL_IN_MS = 100;
 
 let clientCount = 0;
 let lastReport = Date.now();
@@ -20,14 +20,22 @@ const createClient = () => {
         transports,
     });
 
+    const user_id = Math.round(Math.random() * MAX_CLIENTS)
     setInterval(() => {
-            socket.emit("client to server event");
+        console.log("sending packet", packetsSinceLastReport++)
+            socket.emit("order:create", JSON.stringify({
+                "user": "user_" + user_id, 
+                "is_bid": Math.random() > 0.5, 
+                "limit_price": Math.round(Math.random() * 1000), 
+                "amount": Math.round(Math.random() * 10), 
+                "order_expiry": 1679155437
+            }));
         }, 
         EMIT_INTERVAL_IN_MS
     );
 
-    socket.on("server to client event", () => {
-        packetsSinceLastReport++;
+    socket.on("order:created", (payload) => {
+        console.log(payload);
     });
 
     socket.on("disconnect", (reason) => {
@@ -56,4 +64,5 @@ const printReport = () => {
     lastReport = now;
 };
 
-setInterval(printReport, 5000);
+printReport()
+// setInterval(printReport, 5000);

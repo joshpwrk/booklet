@@ -21,3 +21,9 @@ Some other important atttributes:
 
 Language: Python
 REST + WebSocket + Redis
+
+## Running Locally [In-Progress]
+Running bare-bones locally consists of three steps:
+1) Redis Server: `redis-server path-to/booklet/matching_engine/redis.conf`
+2) Engine: `cd matching_engine` -> `source venv/bin/activate` -> `python3 server.py`
+3) Websocket Server: `cd websocket` -> `node server.js`
