@@ -77,6 +77,8 @@ class Engine:
             partial_fill.post_to_redis(pipe) if partial_fill else None
 
         # Save whatever is left to redis
+        # TODO: just leaves a "cross-able" order
+        #       thus violating the "always" cross rule
         if order.amount > 0:
             order.post_to_redis(pipe)
         

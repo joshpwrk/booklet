@@ -1,5 +1,5 @@
 {
-  "name": "websocket-api",
+  "name": "websocket",
   "version": "1.0.0",
   "description": "Websocket API for Booklet",
   "main": "server.js",
@@ -7,6 +7,7 @@
   "dependencies": {
     "redis": "^4.6.5",
     "socket.io": "^4.6.1",
+    "socket.io-client": "^4.6.1",
     "uuid": "^9.0.0"
   },
   "devDependencies": {},
