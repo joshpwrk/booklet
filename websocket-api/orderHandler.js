@@ -1,15 +1,21 @@
 import { v4 as uuidv4 } from 'uuid';
 
-async function createOrder(redisQueue) {
-    return async function (payload) {
+function createOrder(redisQueue) {
+    return (payload) => {
         // Generate a unique UUID for the order
         const orderId = uuidv4();
-        payload = {...payload, "order_id": orderId}
+        console.log(JSON.parse(payload));
+        payload = {...JSON.parse(payload), "order_id": orderId}
 
         console.log(`Received request to create order: ${payload}`);
-    
+        console.log(JSON.stringify(payload));
+        console.log(Date.now());
+
         // add the order to a Redis database
-        redisQueue.zadd('queue', Date.now(), payload, (err, result) => {
+        redisQueue.ZADD('queue', [{
+            score: Date.now(), 
+            value: JSON.stringify(payload)
+        }], (err, result) => {
             if (err) {
                 console.error(`Error adding order to Redis: ${err}`);
             } else {

@@ -21,7 +21,7 @@ redis-cli ping
 testing scripts will spin up and wind down redis servers on their own
 
 ```bash
-python -m unittest -v matching-engine/test/*.py
+python -m unittest -v matching_engine/test/*.py
 ```
 
 

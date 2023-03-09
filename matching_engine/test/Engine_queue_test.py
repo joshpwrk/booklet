@@ -9,7 +9,7 @@ import os
 import time
 import threading
 
-# run with: `python -m unittest -v matching-engine/test/Engine__queue_test.py`
+# run with: `python -m unittest -v matching_engine/test/Engine__queue_test.py`
 class EngineQueueTest(unittest.TestCase):
     def setUp(self):
         redis_config_path = os.path.join(os.path.dirname(__file__), 'redis_test.conf')

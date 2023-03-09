@@ -26,6 +26,7 @@ class Engine:
     #########
 
     def consume_queue(self):
+        print("Consuming Queue...")
         self.run_flag = True
         while self.run_flag:
             # Read all items in the zset
