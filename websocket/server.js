@@ -39,11 +39,12 @@ await redisOrderbook.pSubscribe(
   [`__key*__:*`], 
   (message, channel) =>  {
     console.log(message, channel)
-    io.emit("order:created", "this thing actually works")
+    if (message == "zrem" && channel == "__keyspace@1__:queue") {
+      // todo: change to actual order_id -> ideally when added to settlementQueue
+      io.emit("order:created", channel)
+    }
   }
 )
-
-//    socket.broadcast.emit("order:created", redisKey, redisOpeation);
 
 redisQueue.on('error', err => {
   console.log('Error ' + err);

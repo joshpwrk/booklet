@@ -1,7 +1,7 @@
 import { io } from "socket.io-client";
 
 const URL = process.env.URL || "http://localhost:3000";
-const MAX_CLIENTS = 10;
+const MAX_CLIENTS = 100;
 const POLLING_PERCENTAGE = 0;
 const CLIENT_CREATION_INTERVAL_IN_MS = 100;
 const EMIT_INTERVAL_IN_MS = 100;
@@ -22,7 +22,7 @@ const createClient = () => {
 
     const user_id = Math.round(Math.random() * MAX_CLIENTS)
     setInterval(() => {
-        console.log("sending packet", packetsSinceLastReport++)
+        // console.log("sending packet", packetsSinceLastReport++)
             socket.emit("order:create", JSON.stringify({
                 "user": "user_" + user_id, 
                 "is_bid": Math.random() > 0.5, 
@@ -35,7 +35,8 @@ const createClient = () => {
     );
 
     socket.on("order:created", (payload) => {
-        console.log(payload);
+        packetsSinceLastReport++
+        // console.log(payload);
     });
 
     socket.on("disconnect", (reason) => {
@@ -54,6 +55,7 @@ const printReport = () => {
     const durationSinceLastReport = (now - lastReport) / 1000;
     const packetsPerSeconds = (
         packetsSinceLastReport / durationSinceLastReport
+        // todo: currently catching 5 events per order creation...
     ).toFixed(2);
 
     console.log(
@@ -64,5 +66,5 @@ const printReport = () => {
     lastReport = now;
 };
 
-printReport()
-// setInterval(printReport, 5000);
+// printReport()
+setInterval(printReport, 5000);
