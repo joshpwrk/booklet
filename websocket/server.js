@@ -36,11 +36,14 @@ const io = new Server({ /* options */ });
 
 // subscribe to all changes to orderbook
 await redisOrderbook.pSubscribe(
-  [`__keyspace@1__:*`], 
+  [`__key*@*__:*`, `*`], 
   (message, channel) =>  {
     console.log(message, channel)
-    if (message == "zrem" && channel == "__keyspace@1__:queue") {
+    const pattern = /^__keyspace@0__:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+    console.log(pattern.test(channel))
+    if (message == "set" && pattern.test(channel)) {
       // todo: change to actual order_id -> ideally when added to settlementQueue
+      // set __keyspace@0__:524a0e6d-fd71-4f07-af0d-caea25b53bb5
       io.emit("order:created", channel)
     }
   }
