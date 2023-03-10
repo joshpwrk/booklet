@@ -39,8 +39,9 @@ await redisOrderbook.pSubscribe(
   [`__key*@*__:*`, `*`], 
   (message, channel) =>  {
     console.log(message, channel)
-    const orderbook_pattern = /^__keyspace@0__:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-    const settlement_pattern = /^__keyspace@2__:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+    const uuid_pattern = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    const orderbook_pattern = new RegExp(`^__keyspace@${0}__:${uuid_pattern}$`);
+    const settlement_pattern = new RegExp(`^__keyspace@${2}__:${uuid_pattern}$`);;
     if (message == "set" && orderbook_pattern.test(channel)) {
       // notify when posted to orderbook
       io.emit("order:created", channel.split(":")[1])
