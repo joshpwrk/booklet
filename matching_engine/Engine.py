@@ -8,14 +8,15 @@ from datetime import datetime
 import time
 
 # The engine uses a dual DB model in redis:
-# 1) OrderBook: self.r which holds all the outstanding limit orders
+# 1) OrderBook: self.orderbook which holds all the outstanding limit orders
 # 2) Queue: self.queue which is added to by any websocket implementation
 # 3) Settlement: queue of orders waiting to be settled on chain
 
 class Engine:
     def __init__(self, max_counterparties: int):
-        self.r = redis_client = launch_redis_client(db=0)
+        self.orderbook = redis_client = launch_redis_client(db=0)
         self.queue = redis_client = launch_redis_client(db=1)
+        self.settlement = redis_client = launch_redis_client(db=1)
         self.run_flag = False
 
         self.max_counterparties = max_counterparties
@@ -61,7 +62,7 @@ class Engine:
         order = LimitOrder(limit_order)
 
         # Get the best counterparties for the order
-        instrument = Instrument(self.r, order.instrument_id)
+        instrument = Instrument(self.orderbook, order.instrument_id)
         counter_orders = instrument.get_crossable_orders(
             not order.is_bid, 
             order.limit_price, 
@@ -69,11 +70,11 @@ class Engine:
         )
 
         # Begin pipe to batch all redis writes into atomic transaction
-        pipe = self.r.pipeline()
+        pipe = self.orderbook.pipeline()
 
         # Execute the order against the best counterparties
         if counter_orders:
-            counter_orders = list(map(lambda x: LimitOrder(x), self.r.mget(counter_orders))) 
+            counter_orders = list(map(lambda x: LimitOrder(x), self.orderbook.mget(counter_orders))) 
             (filled_orders, partial_fill) = self.pairoff(order, counter_orders)
             self.orders_matched += len(filled_orders) + 1
 

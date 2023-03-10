@@ -2,13 +2,13 @@ import redis
 
 class Instrument:
     def __init__(self, r: redis.client.Redis, instrument_id: str):
-        self.r = r
+        self.orderbook = r
         self.id = instrument_id
 
     # TODO: sort by entry time within same price
     def get_crossable_orders(self, is_bid: bool, limit_price: float, max_counteparties: int):
         # use redis z sets to get all orders within range
-        order_ids = self.r.zrangebyscore(
+        order_ids = self.orderbook.zrangebyscore(
             self.redis_price_set(self.id, is_bid),
             min= limit_price if is_bid else "-inf", 
             max= "inf" if is_bid else limit_price, 
@@ -20,7 +20,7 @@ class Instrument:
 
         # prune out the ones that expired in one redis operation
         # (note this doesn't clear the orderedsets)
-        pipe = self.r.pipeline()
+        pipe = self.orderbook.pipeline()
         for id in order_ids:
             pipe.exists(id)
         results = pipe.execute()
@@ -28,7 +28,7 @@ class Instrument:
 
     def get_orders_in_tick(self, is_bid: bool, tickMin, tickMax):
         # use redis z sets to get all orders within range
-        order_ids = self.r.zrangebyscore(
+        order_ids = self.orderbook.zrangebyscore(
             self.redis_price_set(self.id, is_bid),
             min= tickMin,
             max= tickMax
@@ -39,7 +39,7 @@ class Instrument:
         # prune out the ones that expired in one redis operation
         # (note this doesn't clear the orderedsets)
 
-        pipe = self.r.pipeline()
+        pipe = self.orderbook.pipeline()
         for id in order_ids:
             pipe.exists(id)
         results = pipe.execute()

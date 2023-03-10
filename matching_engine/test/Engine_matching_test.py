@@ -32,12 +32,12 @@ class EngineMatchingTest(unittest.TestCase):
         self.engine.post_limit_order(json.dumps(order2_json))
 
         # Check that the orders were added correctly
-        order1_from_redis = self.engine.r.get(order1_json["order_id"])
-        order2_from_redis = self.engine.r.get(order2_json["order_id"])
+        order1_from_redis = self.engine.orderbook.get(order1_json["order_id"])
+        order2_from_redis = self.engine.orderbook.get(order2_json["order_id"])
 
         # print("PRINT ALL KEYS...")
-        # for key in self.engine.r.scan_iter("*"):
-        #     # value = self.engine.r.get(key)
+        # for key in self.engine.orderbook.scan_iter("*"):
+        #     # value = self.engine.orderbook.get(key)
         #     print(key.decode())
 
         self.assertEqual(order1_json, json.loads(order1_from_redis))
@@ -66,8 +66,8 @@ class EngineMatchingTest(unittest.TestCase):
         self.engine.post_limit_order(json.dumps(existing_order1_json))
         self.engine.post_limit_order(json.dumps(existing_order2_json))
 
-        order1_redis = self.engine.r.get(existing_order1_json["order_id"])
-        order2_redis = self.engine.r.get(existing_order2_json["order_id"])
+        order1_redis = self.engine.orderbook.get(existing_order1_json["order_id"])
+        order2_redis = self.engine.orderbook.get(existing_order2_json["order_id"])
 
         self.assertEqual(existing_order1_json, json.loads(order1_redis))
         self.assertEqual(existing_order2_json, json.loads(order2_redis))
@@ -82,11 +82,11 @@ class EngineMatchingTest(unittest.TestCase):
             "order_expiry": 1679155437
         }
         self.engine.post_limit_order(json.dumps(order_json))
-        order_redis = json.loads(self.engine.r.get(order_json["order_id"]))
+        order_redis = json.loads(self.engine.orderbook.get(order_json["order_id"]))
 
         self.assertEqual(order_redis["amount"], 5)
-        self.assertEqual(self.engine.r.exists("random1"), False)
-        self.assertEqual(self.engine.r.exists("random2"), True)
+        self.assertEqual(self.engine.orderbook.exists("random1"), False)
+        self.assertEqual(self.engine.orderbook.exists("random2"), True)
 
     def test_post_partial_crossing(self):
         # post initial orders
@@ -110,8 +110,8 @@ class EngineMatchingTest(unittest.TestCase):
         self.engine.post_limit_order(json.dumps(existing_order1_json))
         self.engine.post_limit_order(json.dumps(existing_order2_json))
 
-        order1_redis = self.engine.r.get(existing_order1_json["order_id"])
-        order2_redis = self.engine.r.get(existing_order2_json["order_id"])
+        order1_redis = self.engine.orderbook.get(existing_order1_json["order_id"])
+        order2_redis = self.engine.orderbook.get(existing_order2_json["order_id"])
 
         self.assertEqual(existing_order1_json, json.loads(order1_redis))
         self.assertEqual(existing_order2_json, json.loads(order2_redis))
@@ -128,10 +128,10 @@ class EngineMatchingTest(unittest.TestCase):
         self.engine.post_limit_order(json.dumps(order_json))
 
         # confirm not all orders are crossed
-        self.assertEqual(self.engine.r.exists("random3"), False)
-        self.assertEqual(self.engine.r.exists("random1"), False)
-        self.assertEqual(self.engine.r.exists("random2"), True)
-        self.assertEqual(3, json.loads(self.engine.r.get("random2"))["amount"])
+        self.assertEqual(self.engine.orderbook.exists("random3"), False)
+        self.assertEqual(self.engine.orderbook.exists("random1"), False)
+        self.assertEqual(self.engine.orderbook.exists("random2"), True)
+        self.assertEqual(3, json.loads(self.engine.orderbook.get("random2"))["amount"])
 
 
 if __name__ == '__main__':

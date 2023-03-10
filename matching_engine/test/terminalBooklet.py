@@ -29,11 +29,11 @@ def chart_booklet():
             askIds = instrument.get_orders_in_tick(False, value - bucketSize, value)
 
             # break down into prices
-            bidJsons = [json.loads(d) for d in instrument.r.mget(bidIds) if d is not None]
+            bidJsons = [json.loads(d) for d in instrument.orderbook.mget(bidIds) if d is not None]
             bidsInTick = sum(d["amount"] for d in bidJsons)
             orderBook[index][0] = bidsInTick if (bidsInTick > 0) else 0.001
 
-            askJsons = [json.loads(d) for d in instrument.r.mget(askIds) if d is not None]
+            askJsons = [json.loads(d) for d in instrument.orderbook.mget(askIds) if d is not None]
             asksInTick = sum(d["amount"] for d in askJsons)
             orderBook[index][1] = asksInTick if (asksInTick > 0) else 0.001
 
