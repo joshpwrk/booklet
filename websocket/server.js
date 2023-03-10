@@ -39,12 +39,14 @@ await redisOrderbook.pSubscribe(
   [`__key*@*__:*`, `*`], 
   (message, channel) =>  {
     console.log(message, channel)
-    const pattern = /^__keyspace@0__:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
-    console.log(pattern.test(channel))
-    if (message == "set" && pattern.test(channel)) {
-      // todo: change to actual order_id -> ideally when added to settlementQueue
-      // set __keyspace@0__:524a0e6d-fd71-4f07-af0d-caea25b53bb5
-      io.emit("order:created", channel)
+    const orderbook_pattern = /^__keyspace@0__:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+    const settlement_pattern = /^__keyspace@2__:[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/;
+    if (message == "set" && orderbook_pattern.test(channel)) {
+      // notify when posted to orderbook
+      io.emit("order:created", channel.split(":")[1])
+    } else if (message == "set" && settlement_pattern.test(channel)) {
+      // notify when queued to settlement
+      io.emit("order:created", channel.split(":")[1])
     }
   }
 )
