@@ -30,7 +30,7 @@ class Instrument:
         # use redis z sets to get all orders within range
         order_ids = self.r.zrangebyscore(
             self.redis_price_set(self.id, is_bid),
-            min= tickMin, 
+            min= tickMin,
             max= tickMax
         )
 

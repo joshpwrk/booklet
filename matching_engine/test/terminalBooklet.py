@@ -22,14 +22,17 @@ def chart_booklet():
         start_time = time.time()
         bucketSize = 10
         for index, value in enumerate(range(bucketSize, 101, bucketSize)):
+            # TODO: these two commands are the ones that take a while: could use a pipe 
             bidIds = instrument.get_orders_in_tick(True, value - bucketSize, value)
             askIds = instrument.get_orders_in_tick(False, value - bucketSize, value)
 
             # break down into prices
-            bidsInTick = sum(json.loads(d)["amount"] for d in instrument.r.mget(bidIds))
+            bidJsons = [json.loads(d) for d in instrument.r.mget(bidIds) if d is not None]
+            bidsInTick = sum(d["amount"] for d in bidJsons)
             orderBook[index][0] = bidsInTick if (bidsInTick > 0) else 0.001
 
-            asksInTick = sum(json.loads(d)["amount"] for d in instrument.r.mget(askIds))
+            askJsons = [json.loads(d) for d in instrument.r.mget(askIds) if d is not None]
+            asksInTick = sum(d["amount"] for d in askJsons)
             orderBook[index][1] = asksInTick if (asksInTick > 0) else 0.001
 
 
