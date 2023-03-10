@@ -1,6 +1,6 @@
 import { v4 as uuidv4 } from 'uuid';
 
-function createOrder(redisQueue) {
+const createOrder = (socket, redisQueue) => {
     return (payload) => {
         // Generate a unique UUID for the order
         const orderId = uuidv4();
@@ -18,10 +18,13 @@ function createOrder(redisQueue) {
                 console.log(`Added order to Redis: ${result}`);
             }
         });
+
+        // return order_id so client can track
+        socket.emit("order:id", orderId);
     }
 }
 
-async function deleteOrder(payload) {
+const deleteOrder = (payload) => {
     const socket = this;
     
     // notify all users

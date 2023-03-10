@@ -53,7 +53,7 @@ redisQueue.on('error', err => {
 io.on('connection', (socket) => {
   console.log('A client connected');
 
-  socket.on('order:create', createOrder(redisQueue));
+  socket.on('order:create', createOrder(socket, redisQueue));
   socket.on("order:delete", deleteOrder);
 });
 
