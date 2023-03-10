@@ -8,11 +8,10 @@ from datetime import datetime
 import time
 
 # The engine uses a dual DB model in redis:
-# 1) OrderQueue: self.queue which is added to by any websocket implementation
-# 2) OrderBook: self.r which holds all the outstanding limit orders
+# 1) OrderBook: self.r which holds all the outstanding limit orders
+# 2) Queue: self.queue which is added to by any websocket implementation
+# 3) Settlement: queue of orders waiting to be settled on chain
 
-# Having an OrderQueue reduces alot of headaches with preventing race conditions.
-# Another benefit is that the websocket and matching-engine can be swapped out.
 class Engine:
     def __init__(self, max_counterparties: int):
         self.r = redis_client = launch_redis_client(db=0)
@@ -20,12 +19,15 @@ class Engine:
         self.run_flag = False
 
         self.max_counterparties = max_counterparties
+        self.orders_processed = 0
+        self.orders_matched = 0
 
     #########
     # QUEUE #
     #########
 
     def consume_queue(self):
+        print("Consuming Queue...")
         self.run_flag = True
         while self.run_flag:
             # Read all items in the zset
@@ -38,11 +40,15 @@ class Engine:
                     item = item.decode('utf-8')
 
                     # Process the item
-                    print(item)
                     self.post_limit_order(item)
+
+                    self.orders_processed += 1
         
                 # Remove all processed items from the zset
                 self.queue.zrem("queue", *items)
+
+                print("orders processed:", self.orders_processed, datetime.now())
+                print("orders matched:", self.orders_matched, datetime.now())
             else:
                 # Check queue every 1ms if queue empty
                 time.sleep(0.001)
@@ -69,6 +75,7 @@ class Engine:
         if counter_orders:
             counter_orders = list(map(lambda x: LimitOrder(x), self.r.mget(counter_orders))) 
             (filled_orders, partial_fill) = self.pairoff(order, counter_orders)
+            self.orders_matched += len(filled_orders) + 1
 
             # delete filled orders from redis
             [order.delete_from_redis(pipe) for order in filled_orders]
@@ -76,6 +83,8 @@ class Engine:
             partial_fill.post_to_redis(pipe) if partial_fill else None
 
         # Save whatever is left to redis
+        # TODO: just leaves a "cross-able" order
+        #       thus violating the "always" cross rule
         if order.amount > 0:
             order.post_to_redis(pipe)
         

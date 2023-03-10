@@ -14,6 +14,7 @@ class LimitOrder:
         self.amount = json_form['amount']
         self.order_expiry = json_form['order_expiry']
 
+        # TODO: permissioned ability to add instrument
         self.instrument_id = 'ETH-$1300-CALL-01012024'
 
         # setup the zset keys
@@ -44,3 +45,6 @@ class LimitOrder:
         # automatically clears expired orders in main set
         # but need periodic runners to clear the price and expiry zsets
         pipe.expireat(self.order_id, self.order_expiry)
+
+    def post_to_settlement(self, pipe: redis.client.Pipeline, block_number):
+        pipe.zadd(self.price_zset_key, {self.order_id: block_number})

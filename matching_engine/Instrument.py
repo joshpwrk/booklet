@@ -5,7 +5,7 @@ class Instrument:
         self.r = r
         self.id = instrument_id
 
-    # TODO: eventually would be nice to sort by entry time
+    # TODO: sort by entry time within same price
     def get_crossable_orders(self, is_bid: bool, limit_price: float, max_counteparties: int):
         # use redis z sets to get all orders within range
         order_ids = self.r.zrangebyscore(
@@ -24,18 +24,26 @@ class Instrument:
         for id in order_ids:
             pipe.exists(id)
         results = pipe.execute()
-        return [order_ids[i] for i, result in enumerate(results) if result == 1]
+        return self.get_non_expired(order_ids)
 
-    def get_expired_orders(is_bid: bool):
-        expiry_zset_key = self.redis_expiry_set(self.id, is_bid)
-
-        expired_order_ids = self.r.zrangebyscore(
-            expiry_zset_key, 
-            min_score=-inf, 
-            max_score=int(datetime.datetime.now().timestamp())
+    def get_orders_in_tick(self, is_bid: bool, tickMin, tickMax):
+        # use redis z sets to get all orders within range
+        order_ids = self.r.zrangebyscore(
+            self.redis_price_set(self.id, is_bid),
+            min= tickMin,
+            max= tickMax
         )
+        return self.get_non_expired(order_ids)
 
-        return order_ids 
+    def get_non_expired(self, order_ids):
+        # prune out the ones that expired in one redis operation
+        # (note this doesn't clear the orderedsets)
+
+        pipe = self.r.pipeline()
+        for id in order_ids:
+            pipe.exists(id)
+        results = pipe.execute()
+        return [order_ids[i] for i, result in enumerate(results) if result == 1]
 
     @staticmethod
     def redis_price_set(instrument_id: str, is_bid: bool):

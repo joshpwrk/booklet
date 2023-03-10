@@ -6,7 +6,7 @@ import json
 import subprocess
 import os
 
-# run with: `python -m unittest -v matching-engine/test/Engine_matching_test.py`
+# run with: `python -m unittest -v matching_engine/test/Engine_matching_test.py`
 class EngineMatchingTest(unittest.TestCase):
     def setUp(self):
         redis_config_path = os.path.join(os.path.dirname(__file__), 'redis_test.conf')
