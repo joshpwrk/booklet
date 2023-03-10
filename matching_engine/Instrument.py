@@ -26,6 +26,22 @@ class Instrument:
         results = pipe.execute()
         return [order_ids[i] for i, result in enumerate(results) if result == 1]
 
+    def get_orders_in_tick(self, is_bid: bool, tickMin, tickMax):
+        # use redis z sets to get all orders within range
+        order_ids = self.r.zrangebyscore(
+            self.redis_price_set(self.id, is_bid),
+            min= tickMin, 
+            max= tickMax
+        )
+
+        # prune out the ones that expired in one redis operation
+        # (note this doesn't clear the orderedsets)
+        pipe = self.r.pipeline()
+        for id in order_ids:
+            pipe.exists(id)
+        results = pipe.execute()
+        return [order_ids[i] for i, result in enumerate(results) if result == 1]
+
     def get_expired_orders(is_bid: bool):
         expiry_zset_key = self.redis_expiry_set(self.id, is_bid)
 

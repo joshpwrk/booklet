@@ -5,7 +5,7 @@ function createOrder(redisQueue) {
         // Generate a unique UUID for the order
         const orderId = uuidv4();
         payload = {...JSON.parse(payload), "order_id": orderId}
-        // console.log(JSON.stringify(payload));
+        console.log(JSON.stringify(payload));
 
         // add the order to a Redis database
         redisQueue.ZADD('queue', [{

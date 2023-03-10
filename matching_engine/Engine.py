@@ -20,6 +20,7 @@ class Engine:
         self.run_flag = False
 
         self.max_counterparties = max_counterparties
+        self.orders_processed = 0
 
     #########
     # QUEUE #
@@ -39,11 +40,14 @@ class Engine:
                     item = item.decode('utf-8')
 
                     # Process the item
-                    print(item)
                     self.post_limit_order(item)
+
+                    self.orders_processed += 1
         
                 # Remove all processed items from the zset
                 self.queue.zrem("queue", *items)
+
+                print("orders processed:", self.orders_processed, datetime.now())
             else:
                 # Check queue every 1ms if queue empty
                 time.sleep(0.001)

@@ -1,9 +1,9 @@
 import { io } from "socket.io-client";
 
 const URL = process.env.URL || "http://localhost:3000";
-const MAX_CLIENTS = 200;
+const MAX_CLIENTS = 5;
 const POLLING_PERCENTAGE = 0;
-const CLIENT_CREATION_INTERVAL_IN_MS = 10;
+const CLIENT_CREATION_INTERVAL_IN_MS = 50;
 const EMIT_INTERVAL_IN_MS = 100;
 
 let clientCount = 0;
@@ -24,14 +24,17 @@ const createClient = () => {
     const user_id = Math.round(Math.random() * 1000 * MAX_CLIENTS)
     setInterval(() => {
         packetsSinceLastReport++
+
+        const is_bid = Math.random() > 0.5 ? true : false
+        const limit_price = is_bid ? Math.round(Math.random() * 70) : Math.round(Math.random() * 70) + 30
         // console.log("sending packet", packetsSinceLastReport++)
-            socket.emit("order:create", JSON.stringify({
-                "user": "user_" + user_id, 
-                "is_bid": true, // Math.random() > 0.5, // remove crossing to check socket / redis
-                "limit_price": Math.round(Math.random() * 1000), 
-                "amount": Math.round(Math.random() * 10), 
-                "order_expiry": 1679155437
-            }));
+        socket.emit("order:create", JSON.stringify({
+            "user": "user_" + user_id, 
+            "is_bid": is_bid, // true // remove crossing to check socket / redis
+            "limit_price": limit_price, 
+            "amount": Math.round(Math.random() * 10), 
+            "order_expiry": 1679155437
+        }));
         }, 
         EMIT_INTERVAL_IN_MS
     );
@@ -64,7 +67,7 @@ const printReport = () => {
     )
 
   console.log(
-    `client count: ${clientCount} ; average packets received per second: ${packetsPerSeconds} ; processed per second: ${processedPerSeconds}`
+    `clients: ${clientCount} ; posts per sec: ${packetsPerSeconds} ; processed per sec: ${processedPerSeconds}`
   );
 
   packetsSinceLastReport = 0;
