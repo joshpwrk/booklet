@@ -36,7 +36,7 @@ const io = new Server({ /* options */ });
 
 // subscribe to all changes to orderbook
 await redisOrderbook.pSubscribe(
-  [`__key*__:*`], 
+  [`__keyspace@1__:*`], 
   (message, channel) =>  {
     console.log(message, channel)
     if (message == "zrem" && channel == "__keyspace@1__:queue") {
