@@ -8,11 +8,10 @@ from datetime import datetime
 import time
 
 # The engine uses a dual DB model in redis:
-# 1) OrderQueue: self.queue which is added to by any websocket implementation
-# 2) OrderBook: self.r which holds all the outstanding limit orders
+# 1) OrderBook: self.r which holds all the outstanding limit orders
+# 2) Queue: self.queue which is added to by any websocket implementation
+# 3) Settlement: queue of orders waiting to be settled on chain
 
-# Having an OrderQueue reduces alot of headaches with preventing race conditions.
-# Another benefit is that the websocket and matching-engine can be swapped out.
 class Engine:
     def __init__(self, max_counterparties: int):
         self.r = redis_client = launch_redis_client(db=0)

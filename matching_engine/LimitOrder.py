@@ -14,6 +14,7 @@ class LimitOrder:
         self.amount = json_form['amount']
         self.order_expiry = json_form['order_expiry']
 
+        # TODO: permissioned ability to add instrument
         self.instrument_id = 'ETH-$1300-CALL-01012024'
 
         # setup the zset keys

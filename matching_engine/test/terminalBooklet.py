@@ -9,6 +9,8 @@ from matching_engine.util import launch_redis_client
 from matching_engine.Instrument import Instrument
 from matching_engine.LimitOrder import LimitOrder
 
+# TODO: Currently loads full booklet on every update
+#       Should load once and then update using events
 def chart_booklet():
     # start client
     instrument = Instrument(launch_redis_client(db=0), 'ETH-$1300-CALL-01012024')

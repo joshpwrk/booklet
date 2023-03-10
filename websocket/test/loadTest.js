@@ -1,10 +1,10 @@
 import { io } from "socket.io-client";
 
 const URL = process.env.URL || "http://localhost:3000";
-const MAX_CLIENTS = 5;
+const MAX_CLIENTS = 500;
 const POLLING_PERCENTAGE = 0;
-const CLIENT_CREATION_INTERVAL_IN_MS = 50;
-const EMIT_INTERVAL_IN_MS = 100;
+const CLIENT_CREATION_INTERVAL_IN_MS = 100;
+const EMIT_INTERVAL_IN_MS = 1000;
 
 let clientCount = 0;
 let lastReport = new Date().getTime();
