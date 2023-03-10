@@ -21,6 +21,7 @@ class Engine:
 
         self.max_counterparties = max_counterparties
         self.orders_processed = 0
+        self.orders_matched = 0
 
     #########
     # QUEUE #
@@ -48,6 +49,7 @@ class Engine:
                 self.queue.zrem("queue", *items)
 
                 print("orders processed:", self.orders_processed, datetime.now())
+                print("orders matched:", self.orders_matched, datetime.now())
             else:
                 # Check queue every 1ms if queue empty
                 time.sleep(0.001)
@@ -74,6 +76,7 @@ class Engine:
         if counter_orders:
             counter_orders = list(map(lambda x: LimitOrder(x), self.r.mget(counter_orders))) 
             (filled_orders, partial_fill) = self.pairoff(order, counter_orders)
+            self.orders_matched += len(filled_orders) + 1
 
             # delete filled orders from redis
             [order.delete_from_redis(pipe) for order in filled_orders]

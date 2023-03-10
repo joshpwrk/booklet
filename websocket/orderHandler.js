@@ -24,7 +24,7 @@ function createOrder(redisQueue) {
 async function deleteOrder(payload) {
     const socket = this;
     
-    // notify the other users
+    // notify all users
     socket.broadcast.emit("order:deleted", "yay");
 
     console.log(`Deleted order: ${payload}`);

@@ -41,7 +41,6 @@ const createClient = () => {
 
     socket.on("order:created", (payload) => {
         processedSinceLastReport++
-        // console.log(processedSinceLastReport);
     });
 
     socket.on("disconnect", (reason) => {
@@ -75,5 +74,4 @@ const printReport = () => {
   lastReport = now;
 };
 
-// printReport()
 setInterval(printReport, 5000);
