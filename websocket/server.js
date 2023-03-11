@@ -36,12 +36,18 @@ const io = new Server({ /* options */ });
 
 // subscribe to all changes to orderbook
 await redisOrderbook.pSubscribe(
-  [`__keyspace@1__:*`], 
+  [`__key*@*__:*`, `*`], 
   (message, channel) =>  {
-    console.log(message, channel)
-    if (message == "zrem" && channel == "__keyspace@1__:queue") {
-      // todo: change to actual order_id -> ideally when added to settlementQueue
-      io.emit("order:created", channel)
+    // console.log(message, channel)
+    const uuid_pattern = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
+    const orderbook_pattern = new RegExp(`^__keyspace@${0}__:${uuid_pattern}$`);
+    const settlement_pattern = new RegExp(`^__keyspace@${2}__:${uuid_pattern}$`);;
+    if (message == "set" && orderbook_pattern.test(channel)) {
+      // notify when posted to orderbook
+      io.emit("order:created", channel.split(":")[1])
+    } else if (message == "set" && settlement_pattern.test(channel)) {
+      // notify when queued to settlement
+      io.emit("order:created", channel.split(":")[1])
     }
   }
 )
@@ -51,10 +57,18 @@ redisQueue.on('error', err => {
 });
 
 io.on('connection', (socket) => {
+  // Get the total number of connected clients
   console.log('A client connected');
+  console.log(`Total clients connected: ${io.engine.clientsCount}`);
 
-  socket.on('order:create', createOrder(redisQueue));
+  socket.on('order:create', createOrder(socket, redisQueue));
   socket.on("order:delete", deleteOrder);
+
+  socket.on('disconnect', () => {
+    console.log('A client disconnected');
+    console.log(`Total clients connected: ${io.engine.clientsCount}`);
+    ;
+  });
 });
 
 io.listen(3000, () => {
