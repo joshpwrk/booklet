@@ -39,10 +39,10 @@ const clientRamp = (emitInterval, isMarketMaker) => {
 
     if (isMarketMaker) {
         mmCount++;
-        console.log(`Market maker ${mmCount} connected`);
+        // console.log(`Market maker ${mmCount} connected`);
     } else {
         userCount++;
-        console.log(`User ${userCount} connected`);
+        // console.log(`User ${userCount} connected`);
     }
 
     socket.on("order:created", (payload) => {
@@ -61,13 +61,13 @@ const clientRamp = (emitInterval, isMarketMaker) => {
 };
 
 // Market Makers
-for (let i = 0; i < 5; i++) {
-    setTimeout(() => clientRamp(100, true), i * 100);
+for (let i = 0; i < 3; i++) {
+    setTimeout(() => clientRamp(10, true), i * 100);
 }
 
 // Traders
 for (let i = 0; i < 100; i++) {
-    setTimeout(() => clientRamp(500, false), i * 100);
+    setTimeout(() => clientRamp(1000, false), i * 100);
 }
 
 const printReport = () => {
@@ -78,7 +78,7 @@ const printReport = () => {
     ).toFixed(2);
 
   console.log(
-    `req per sec: ${packetsPerSeconds}`
+    `MMs: ${mmCount}  |  Users: ${userCount}  |  Req/S: ${packetsPerSeconds}`
   );
 
   requestsSinceLastReport = 0;

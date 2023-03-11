@@ -24,7 +24,7 @@ function sendOrder() {
         socket.on('order:created', (nextOrderId) => {
             if (nextOrderId == original_order) {
                 const latency = Date.now() - startTime;
-                process.stdout.write(`Total latency: ${latency} ms       \r`);
+                console.log(`Total latency: ${latency} ms`)
                 socket.off("order:created");
             }
         });
