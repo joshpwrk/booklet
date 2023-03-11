@@ -20,16 +20,19 @@ function sendOrder() {
     socket.emit('order:create', JSON.stringify(order));
 
     socket.once('order:id', (orderId) => {
-        console.log(`Order ID: ${orderId}`);
-
-        socket.once('order:created', () => {
-            console.log('Order created');
-            const endTime = Date.now();
-            const latency = endTime - startTime;
-            console.log(`Total latency: ${latency} ms`);
+        const original_order = orderId
+        socket.on('order:created', (nextOrderId) => {
+            if (nextOrderId == original_order) {
+                const latency = Date.now() - startTime;
+                process.stdout.write(`Total latency: ${latency} ms       \r`);
+                socket.off("order:created");
+            }
         });
     });
 }
 
 // call sendOrder() to send the order and wait for the response
-sendOrder();
+setInterval(
+    sendOrder, 
+    5000 // every second
+);

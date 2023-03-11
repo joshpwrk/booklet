@@ -67,7 +67,7 @@ for (let i = 0; i < 5; i++) {
 
 // Traders
 for (let i = 0; i < 100; i++) {
-    setTimeout(() => clientRamp(1000, false), i * 100);
+    setTimeout(() => clientRamp(500, false), i * 100);
 }
 
 const printReport = () => {
