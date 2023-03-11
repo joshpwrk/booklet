@@ -52,6 +52,7 @@ class Engine:
                 print("orders matched:", self.orders_matched, datetime.now())
             else:
                 # Check queue every 1microsecond if queue empty
+                # TODO: use this time to clearExpired
                 time.sleep(0.00001)
 
     ########
@@ -62,8 +63,11 @@ class Engine:
         order = LimitOrder(limit_order)
         original_amount = order.amount
 
-        # Get the best counterparties for the order
+        # Clear out all expired orders
         instrument = Instrument(self.orderbook, order.instrument_id)
+        self.clear_expired(instrument, order.is_bid)
+
+        # Get the best counterparties for the order
         counter_orders = instrument.get_crossable_orders(
             not order.is_bid, 
             order.limit_price, 
@@ -112,6 +116,19 @@ class Engine:
     ##################
     # BUSINESS LOGIC #
     ##################
+
+    def clear_expired(self, instrument, is_bid):
+        expired_ids = self.orderbook.zrangebyscore(
+            instrument.redis_expiry_set(instrument.id, is_bid),
+            min="-inf",
+            max=int(time.time())
+        )
+        expired_orders = list(map(lambda x: LimitOrder(x), self.orderbook.mget(expired_ids))) 
+
+        pipe = self.orderbook.pipeline()
+        for order in expired_orders:
+            order.delete_from_redis(pipe)
+        results = pipe.execute()
         
     # Change to BaseOrder so that can be reused in pairing off market orders
     @staticmethod

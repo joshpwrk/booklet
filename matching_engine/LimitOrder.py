@@ -44,7 +44,7 @@ class LimitOrder:
 
         # automatically clears expired orders in main set
         # but need periodic runners to clear the price and expiry zsets
-        pipe.expireat(self.order_id, self.order_expiry)
+        # pipe.expireat(self.order_id, self.order_expiry)
 
     def post_to_settlement(self, pipe: redis.client.Pipeline, amount, counter_parties):
         # TODO: should add limit order for signature verification

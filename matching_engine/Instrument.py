@@ -1,4 +1,5 @@
 import redis
+import time 
 
 class Instrument:
     def __init__(self, r: redis.client.Redis, instrument_id: str):
@@ -8,6 +9,7 @@ class Instrument:
     # TODO: sort by entry time within same price
     def get_crossable_orders(self, is_bid: bool, limit_price: float, max_counteparties: int):
         # use redis z sets to get all orders within range
+        # TODO: should loop back in and find more counter_parties if all expired
         order_ids = self.orderbook.zrangebyscore(
             self.redis_price_set(self.id, is_bid),
             min= limit_price if is_bid else "-inf", 
@@ -16,34 +18,19 @@ class Instrument:
         )
 
         # automatically return asc vs desc order depending on type
-        if (is_bid): order_ids = order_ids[::-1]
+        # if (is_bid): order_ids = order_ids[::-1]
 
-        # prune out the ones that expired in one redis operation
-        # (note this doesn't clear the orderedsets)
-        pipe = self.orderbook.pipeline()
-        for id in order_ids:
-            pipe.exists(id)
-        results = pipe.execute()
-        return self.get_non_expired(order_ids)
+        return order_ids if is_bid else order_ids[::-1]
 
     def get_orders_in_tick(self, is_bid: bool, tickMin, tickMax):
         # use redis z sets to get all orders within range
-        order_ids = self.orderbook.zrangebyscore(
+        # TODO: assumes all orders are expired - but engine only clears whenever there is a new request
+        return self.orderbook.zrangebyscore(
             self.redis_price_set(self.id, is_bid),
             min= tickMin,
             max= tickMax
         )
-        return self.get_non_expired(order_ids)
 
-    def get_non_expired(self, order_ids):
-        # prune out the ones that expired in one redis operation
-        # (note this doesn't clear the orderedsets)
-
-        pipe = self.orderbook.pipeline()
-        for id in order_ids:
-            pipe.exists(id)
-        results = pipe.execute()
-        return [order_ids[i] for i, result in enumerate(results) if result == 1]
 
     @staticmethod
     def redis_price_set(instrument_id: str, is_bid: bool):
