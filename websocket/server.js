@@ -38,7 +38,7 @@ const io = new Server({ /* options */ });
 await redisOrderbook.pSubscribe(
   [`__key*@*__:*`, `*`], 
   (message, channel) =>  {
-    console.log(message, channel)
+    // console.log(message, channel)
     const uuid_pattern = '[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}'
     const orderbook_pattern = new RegExp(`^__keyspace@${0}__:${uuid_pattern}$`);
     const settlement_pattern = new RegExp(`^__keyspace@${2}__:${uuid_pattern}$`);;
@@ -57,10 +57,18 @@ redisQueue.on('error', err => {
 });
 
 io.on('connection', (socket) => {
+  // Get the total number of connected clients
   console.log('A client connected');
+  console.log(`Total clients connected: ${io.engine.clientsCount}`);
 
   socket.on('order:create', createOrder(socket, redisQueue));
   socket.on("order:delete", deleteOrder);
+
+  socket.on('disconnect', () => {
+    console.log('A client disconnected');
+    console.log(`Total clients connected: ${io.engine.clientsCount}`);
+    ;
+  });
 });
 
 io.listen(3000, () => {

@@ -28,3 +28,7 @@ Running bare-bones locally consists of three steps:
 2) Engine: `cd matching_engine` -> `source venv/bin/activate` -> `python3 server.py`
 3) Websocket Server: `cd websocket` -> `node server.js`
 4) Booklet Visualizer: `cd matching_engine` -> `source venv/bin/activate` -> `cd test` -> `python3 terminalBooklet.py`
+
+Note: on MacOS there are many system controls preventing large number of socket connections from being open:
+https://k6.io/docs/misc/fine-tuning-os/
+https://socket.io/docs/v4/performance-tuning/

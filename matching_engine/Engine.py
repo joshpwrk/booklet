@@ -51,8 +51,8 @@ class Engine:
                 print("orders processed:", self.orders_processed, datetime.now())
                 print("orders matched:", self.orders_matched, datetime.now())
             else:
-                # Check queue every 1ms if queue empty
-                time.sleep(0.001)
+                # Check queue every 1microsecond if queue empty
+                time.sleep(0.00001)
 
     ########
     # POST #
