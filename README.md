@@ -24,10 +24,11 @@ REST + WebSocket + Redis
 
 ## Running Locally [In-Progress]
 Running bare-bones locally consists of three steps:
-1) Redis Server: `redis-server path-to/booklet/matching_engine/redis.conf`
+1) Redis Server: `redis-server path-to/booklet/matching_engine/redis.conf`, use `redis-cli --stat` to monitor
 2) Engine: `cd matching_engine` -> `source venv/bin/activate` -> `python3 server.py`
 3) Websocket Server: `cd websocket` -> `node server.js`
 4) Booklet Visualizer: `cd matching_engine` -> `source venv/bin/activate` -> `cd test` -> `python3 terminalBooklet.py`
+5) Mock Clients: load testing, simulations and latency mock clients can be found in `websocket/test`
 
 Note: on MacOS there are many system controls preventing large number of socket connections from being open:
 https://k6.io/docs/misc/fine-tuning-os/
