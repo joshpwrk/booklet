@@ -3,7 +3,7 @@ import { Server } from "socket.io";
 import { createOrder, deleteOrder } from "./orderHandler.js";
 import redis from "redis";
 
-const redisUrl = url.parse(process.env.REDIS_ADDRESS || 'redis://127.0.0.1:6379');
+const redisUrl = url.parse(process.env.REDIS_PRIMARY_ADDRESS || 'redis://127.0.0.1:6379');
 const port = process.env.PORT || 3000
 
 ////////////////////////
