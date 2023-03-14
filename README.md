@@ -6,9 +6,9 @@ The goals is to create the simplest MVP that'll break just beyond the point of P
 ## PMF
 
 Defining this is tough, but using dYdX/Deribit as a conservative threshold, we can come to these conclusions:
-- @ 10,000 req/sec, response around 100ms 
+- <2,000 req/sec (5MMs @ Deribit rate limits + 500 traders / sec), latency around 100ms 
 - up to 1GB live order-book size
-- up to 200 traders per sec + ~5 highly-active market makers 
+- up to 500 traders per sec + ~5 highly-active market makers 
 - Catch up to latest order-book state in <5 sec
 - Ability to roll back if settlement layer reverts
 
