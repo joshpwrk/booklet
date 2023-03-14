@@ -13,3 +13,6 @@ The websocket server is meant to be:
 
 - https://aws.amazon.com/blogs/database/how-to-build-a-chat-application-with-amazon-elasticache-for-redis/
 - https://binyamin.medium.com/node-websockets-with-aws-elastic-beanstalk-elastic-load-balancer-elb-or-application-load-6a693b21415a
+- https://docs.aws.amazon.com/AmazonElastiCache/latest/red-ug/GettingStarted.ConnectToCacheNode.html
+- https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/ec2-classic-platform.html
+- https://hstk.com/websockets-redis-setup-in-aws-elastic-beanstalk/
