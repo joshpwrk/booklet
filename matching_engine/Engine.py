@@ -32,6 +32,7 @@ class Engine:
         self.run_flag = True
         while self.run_flag:
             # Read all items in the zset
+            # TODO: limit to 1000 units per pull
             items = self.queue.zrange("queue", 0, -1, withscores=False)
             
             if items:

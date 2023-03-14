@@ -1,6 +1,10 @@
+import url from 'url';
 import { Server } from "socket.io";
 import { createOrder, deleteOrder } from "./orderHandler.js";
 import redis from "redis";
+
+const redisUrl = url.parse(process.env.REDIS_ADDRESS || 'redis://127.0.0.1:6379');
+const port = process.env.PORT || 3000
 
 ////////////////////////
 // Redis Client Setup //
@@ -8,8 +12,8 @@ import redis from "redis";
 
 const redisQueue = redis.createClient({ 
   socket: {
-    host: 'localhost',
-    port: 6379,
+    host: redisUrl.hostname,
+    port: redisUrl.port,
     keepAlive: true
   },
   database: 1
@@ -18,8 +22,8 @@ await redisQueue.connect()
 
 const redisOrderbook = redis.createClient({ 
   socket: {
-    host: 'localhost',
-    port: 6379,
+    host: redisUrl.hostname,
+    port: redisUrl.port,
     keepAlive: true
   },
   database: 0
@@ -71,6 +75,6 @@ io.on('connection', (socket) => {
   });
 });
 
-io.listen(3000, () => {
-  console.log('Server listening on port 3000');
+io.listen(port, () => {
+  console.log(`Server listening on port ${port}`);
 });
