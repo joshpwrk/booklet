@@ -37,10 +37,8 @@ https://socket.io/docs/v4/performance-tuning/
 
 ## Docker Commands:
 
-Build redis:  `docker build -t redis ./redis/.`
-Build matching engine:  `docker build -t matching_engine ./matching_engine/.`
-Build websocket:  `docker build -t websocket ./websocket/.`
+1) Build redis:  `docker build -t redis ./redis/.`
+2) Build matching engine:  `docker build -t matching_engine ./matching_engine/.`
+3) Build websocket:  `docker build -t websocket ./websocket/.`
 
-Run redis: `docker run -dp 6379:6379 redis`
-Run matching engine: `docker run -dp 8000:8000 matching_engine`
-Run websocket: `docker run -dp 3000:3000 websocket`
+Run: `docker compose up`
