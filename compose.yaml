@@ -6,12 +6,11 @@ services:
   matching_engine:
     image: matching_engine
     ports:
-      - "3000:3000"
-
+      - "8000:8000"
   websocket:
     image: websocket
     ports:
-      - "8000:8000"
+      - "3000:3000"
 
 networks:
   # The presence of these objects is sufficient to define them
