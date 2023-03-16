@@ -1,7 +1,7 @@
 import json
 import redis
 from datetime import datetime
-from .Instrument import Instrument
+from Instrument import Instrument
 
 class LimitOrder:
     def __init__(self, json_str: str):

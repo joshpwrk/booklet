@@ -1,9 +1,9 @@
 import json
 import uuid
 import redis
-from .LimitOrder import LimitOrder
-from .Instrument import Instrument
-from .util import launch_redis_client
+from LimitOrder import LimitOrder
+from Instrument import Instrument
+from util import launch_redis_client
 from datetime import datetime
 import time
 
