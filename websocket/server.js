@@ -8,8 +8,8 @@ import redis from "redis";
 
 const redisQueue = redis.createClient({ 
   socket: {
-    host: process.env.REDIS_HOST || 'host.docker.internal',
-    port: 6379,
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
     keepAlive: true
   },
   database: 1
@@ -18,8 +18,8 @@ await redisQueue.connect()
 
 const redisOrderbook = redis.createClient({ 
   socket: {
-    host: process.env.REDIS_HOST || 'host.docker.internal',
-    port: 6379,
+    host: process.env.REDIS_HOST,
+    port: process.env.REDIS_PORT,
     keepAlive: true
   },
   database: 0

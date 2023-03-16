@@ -14,9 +14,9 @@ import time
 
 class Engine:
     def __init__(self, max_counterparties: int):
-        self.orderbook = redis_client = launch_redis_client(db=0)
-        self.queue = redis_client = launch_redis_client(db=1)
-        self.settlement = redis_client = launch_redis_client(db=2)
+        self.orderbook = launch_redis_client(db=0)
+        self.queue = launch_redis_client(db=1)
+        self.settlement = launch_redis_client(db=2)
         self.run_flag = False
 
         self.max_counterparties = max_counterparties

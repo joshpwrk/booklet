@@ -16,8 +16,9 @@ COPY . .
 # Expose the port your WebSocket server is running on, e.g., 3000
 EXPOSE 3000
 
-# Set the default Redis host to localhost
-ENV REDIS_HOST=host.docker.internal
+# Set the Redis host address to docker-compose service name
+ENV REDIS_HOST=redis
+ENV REDIS_PORT=6379
 
 # Start the WebSocket server with the correct path
 CMD ["node", "server.js"]
