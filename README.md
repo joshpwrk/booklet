@@ -33,3 +33,14 @@ Running bare-bones locally consists of three steps:
 Note: on MacOS there are many system controls preventing large number of socket connections from being open:
 https://k6.io/docs/misc/fine-tuning-os/
 https://socket.io/docs/v4/performance-tuning/
+
+
+## Docker Commands:
+
+Build redis:  `docker build -t redis ./redis/.`
+Build matching engine:  `docker build -t matching_engine ./matching_engine/.`
+Build websocket:  `docker build -t websocket ./websocket/.`
+
+Run redis: `docker run -dp 6379:6379 redis`
+Run matching engine: `docker run -dp 8000:8000 matching_engine`
+Run websocket: `docker run -dp 3000:3000 websocket`

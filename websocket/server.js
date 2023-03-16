@@ -8,7 +8,7 @@ import redis from "redis";
 
 const redisQueue = redis.createClient({ 
   socket: {
-    host: 'localhost',
+    host: 'redis',
     port: 6379,
     keepAlive: true
   },
@@ -18,7 +18,7 @@ await redisQueue.connect()
 
 const redisOrderbook = redis.createClient({ 
   socket: {
-    host: 'localhost',
+    host: 'redis',
     port: 6379,
     keepAlive: true
   },
