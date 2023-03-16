@@ -1,7 +1,7 @@
 import redis
 import time
 
-def launch_redis_client(host='localhost', port=6379, db=0):
+def launch_redis_client(host='redis', port=6379, db=0):
     r = redis.Redis(host=host, port=port, db=db)
     while True:
         try:
