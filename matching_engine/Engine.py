@@ -14,9 +14,9 @@ import time
 
 class Engine:
     def __init__(self, max_counterparties: int):
-        self.orderbook = redis_client = launch_redis_client(db=0)
-        self.queue = redis_client = launch_redis_client(db=1)
-        self.settlement = redis_client = launch_redis_client(db=2)
+        self.orderbook = launch_redis_client(db=0)
+        self.queue = launch_redis_client(db=1)
+        self.settlement = launch_redis_client(db=2)
         self.run_flag = False
 
         self.max_counterparties = max_counterparties
@@ -31,8 +31,8 @@ class Engine:
         print("Consuming Queue...")
         self.run_flag = True
         while self.run_flag:
-            # Read all items in the zset
-            items = self.queue.zrange("queue", 0, -1, withscores=False)
+            # Read 500 items at a time from queue
+            items = self.queue.zrange("queue", 0, 1000, withscores=False)
             
             if items:
                 # Process each item
