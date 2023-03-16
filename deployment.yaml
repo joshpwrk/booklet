@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-project
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: my-project
+  template:
+    metadata:
+      labels:
+        app: my-project
+    spec:
+      containers:
+      - name: webserver
+        image: your/nodejs-image
+        ports:
+        - containerPort: 8080
+        env:
+        - name: REDIS_HOST
+          value: your-redis-endpoint.amazonaws.com
+          # replace "your-redis-endpoint" with the actual endpoint provided by AWS Elasticache
+      - name: python-compute
+        image: your/python-image
+        env:
+        - name: REDIS_HOST
+          value: your-redis-endpoint.amazonaws.com
+          # replace "your-redis-endpoint" with the actual endpoint provided by AWS Elasticache
