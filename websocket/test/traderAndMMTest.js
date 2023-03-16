@@ -66,7 +66,7 @@ for (let i = 0; i < 3; i++) {
 }
 
 // Traders
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 10; i++) {
     setTimeout(() => clientRamp(1000, false), i * 100);
 }
 

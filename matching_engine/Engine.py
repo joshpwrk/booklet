@@ -31,8 +31,8 @@ class Engine:
         print("Consuming Queue...")
         self.run_flag = True
         while self.run_flag:
-            # Read all items in the zset
-            items = self.queue.zrange("queue", 0, -1, withscores=False)
+            # Read 500 items at a time from queue
+            items = self.queue.zrange("queue", 0, 1000, withscores=False)
             
             if items:
                 # Process each item
