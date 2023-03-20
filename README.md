@@ -1,28 +1,28 @@
 # Booklet
-Monorepo of a super light order-book for pre-PMF exchanges.
+Monorepo of a super light order-book I built in <1 week as a hands-on tutorial of what makes up an orderbook.
 
-The goals is to create the simplest MVP that'll break just beyond the point of Product-Market-Fit.
+The goals is to create the simplest PoC that provides a starting point for developing a scalable orderbook back-end.
 
-## PMF
+## What it can handle on your laptop
 
-Defining this is tough, but using dYdX/Deribit as a conservative threshold, we can come to these conclusions:
-- <2,000 req/sec (5MMs @ Deribit rate limits + 500 traders / sec), latency around 100ms 
+- ~500 req/sec 
 - up to 1GB live order-book size
-- up to 500 traders per sec + ~5 highly-active market makers 
-- Catch up to latest order-book state in <5 sec
-- Ability to roll back if settlement layer reverts
+- up to 100 clients per sec (mostly a max-file system constraint) 
+- Simple orderbook terminal visualizer
 
-Some other important atttributes:
-- Chain / settlement agnostic
-- KYC plug-in functionality
-- An easy language that the whole team can contrubite in
+All the things it doesn't do:
+- No connection to ETH and/or L2 JSON RPC
+- No load balancer / Docker containers / middleware
+- Nothing other than simple limit-orders
 
-## Architecture [In-Progress]
+## Components
 
-Language: Python
-REST + WebSocket + Redis
+Matching Engine: Python (majority of matching / sorting done via Redis)
+Orderbook: Redis
+Server: NodeJS Websocket
+Visualizer: Simple terminal script
 
-## Running Locally [In-Progress]
+## Running Locally 
 Running bare-bones locally consists of three steps:
 1) Redis Server: `redis-server path-to/booklet/matching_engine/redis.conf`, use `redis-cli --stat` to monitor
 2) Engine: `cd matching_engine` -> `source venv/bin/activate` -> `python3 server.py`
